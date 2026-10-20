@@ -27,7 +27,7 @@ function formatGoalDiff(diff: number): string {
 ---
 
 {standings.length > 0 ? (
-  <div class="standings-card">
+  <div class="standings-ledger">
     <div class="table-responsive">
       <table class="standings-table">
         <thead>
@@ -65,11 +65,10 @@ function formatGoalDiff(diff: number): string {
 )}
 
 <style>
-  .standings-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    overflow: hidden;
+  .standings-ledger {
+    border-top: 2px solid var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    background: transparent;
   }
 
   .table-responsive {
@@ -82,19 +81,19 @@ function formatGoalDiff(diff: number): string {
     border-collapse: collapse;
     font-size: 0.95rem;
     text-align: left;
+    font-variant-numeric: tabular-nums;
   }
 
   .standings-table thead tr {
-    background: rgba(255, 255, 255, 0.03);
     border-bottom: 1px solid var(--color-border);
   }
 
   .standings-table th {
     padding: 0.9rem 1.1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--color-text-muted);
     white-space: nowrap;
   }
@@ -111,7 +110,7 @@ function formatGoalDiff(diff: number): string {
   }
 
   .standings-table tbody tr:hover {
-    background: var(--color-surface-hover);
+    background: var(--color-surface);
   }
 
   .col-rank {
@@ -124,6 +123,7 @@ function formatGoalDiff(diff: number): string {
     color: var(--color-text);
     white-space: normal;
     min-width: 180px;
+    font-weight: 500;
   }
 
   .col-num,
@@ -135,7 +135,7 @@ function formatGoalDiff(diff: number): string {
 
   .col-pts {
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* VfL Primstal row — always bold */
@@ -159,9 +159,8 @@ function formatGoalDiff(diff: number): string {
   }
 
   .standings-placeholder {
-    background: var(--color-surface);
-    border: 1px dashed var(--color-border);
-    border-radius: 12px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
     padding: 3rem 2rem;
     text-align: center;
     color: var(--color-text-muted);
@@ -174,7 +173,24 @@ function formatGoalDiff(diff: number): string {
 
     .standings-table th,
     .standings-table td {
-      padding: 0.7rem 0.65rem;
+      padding: 0.65rem 0.5rem;
+    }
+
+    .col-sun {
+      display: none;
+    }
+
+    .col-rank {
+      width: 2.25rem;
+    }
+
+    .col-team {
+      min-width: 0;
+    }
+
+    .col-num,
+    .col-pts {
+      width: 3.1rem;
     }
   }
 </style>

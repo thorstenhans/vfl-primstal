@@ -12,7 +12,7 @@ import milestones from "../data/chronik.json";
   <main>
     <section class="chronik-hero">
       <div class="container">
-        <span class="badge">Gegründet 1931</span>
+        <p class="hero-eyebrow">Seit 1931 &middot; Vereinschronik</p>
         <h1 class="hero-title">Unsere Geschichte</h1>
         <p class="hero-subtitle">
           Über 90 Jahre Leidenschaft, Zusammenhalt und Fußball im Herzen des Saarlandes.
@@ -34,11 +34,7 @@ import milestones from "../data/chronik.json";
                 <div class="connector-line"></div>
               </div>
               <div class="timeline-content">
-                {entry.highlight ? (
-                  <div class="timeline-card">{entry.text}</div>
-                ) : (
-                  <p class="timeline-text">{entry.text}</p>
-                )}
+                <p class="timeline-text">{entry.text}</p>
               </div>
             </div>
           ))}
@@ -51,41 +47,29 @@ import milestones from "../data/chronik.json";
 
 <style>
   .chronik-hero {
-    padding: calc(var(--header-height) + 5rem) 0 5rem;
+    padding: calc(var(--header-height) + 5rem) 0 4.5rem;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(200, 16, 46, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 50%, rgba(200, 16, 46, 0.08) 0%, transparent 60%),
       var(--color-bg);
     border-bottom: 1px solid var(--color-border);
-  }
-
-  .badge {
-    display: inline-block;
-    background: var(--color-red-glow);
-    color: var(--color-red);
-    border: 1px solid var(--color-border-accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 0.35rem 0.9rem;
-    border-radius: 999px;
-    margin-bottom: 1.5rem;
   }
 
   .hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
     color: var(--color-text);
-    line-height: 1.1;
+    line-height: 1.08;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 
   .hero-subtitle {
     color: var(--color-text-muted);
-    font-size: 1.1rem;
-    max-width: 580px;
+    font-size: 1.08rem;
+    max-width: 60ch;
     line-height: 1.7;
+    text-wrap: pretty;
   }
 
   .timeline-section {
@@ -100,29 +84,31 @@ import milestones from "../data/chronik.json";
 
   .timeline-entry {
     display: grid;
-    grid-template-columns: 90px 36px 1fr;
-    gap: 0 1.25rem;
+    grid-template-columns: 96px 36px 1fr;
+    gap: 0 1.5rem;
     align-items: start;
     min-height: 3rem;
   }
 
   .timeline-year {
     text-align: right;
-    padding-top: 0.2rem;
-    padding-bottom: 1.75rem;
+    padding-top: 0.15rem;
+    padding-bottom: 2rem;
   }
 
   .timeline-year span {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-red);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
     line-height: 1.4;
     font-variant-numeric: tabular-nums;
   }
 
   .timeline-entry--highlight .timeline-year span {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
+    color: var(--color-red);
+    letter-spacing: -0.02em;
   }
 
   .timeline-connector {
@@ -136,26 +122,25 @@ import milestones from "../data/chronik.json";
 
   .connector-dot {
     flex-shrink: 0;
-    width: 10px;
-    height: 10px;
-    background: var(--color-red);
+    width: 8px;
+    height: 8px;
+    background: var(--color-border);
     border-radius: 50%;
-    border: 2px solid var(--color-bg);
-    box-shadow: 0 0 0 2px var(--color-red-dark);
-    margin-top: 0.35rem;
+    margin-top: 0.45rem;
     z-index: 1;
   }
 
   .timeline-entry--highlight .connector-dot {
-    width: 14px;
-    height: 14px;
-    box-shadow: 0 0 0 2px var(--color-red), 0 0 12px rgba(200, 16, 46, 0.4);
-    margin-top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    background: var(--color-red);
+    box-shadow: 0 0 0 3px var(--color-bg);
+    margin-top: 0.35rem;
   }
 
   .connector-line {
     flex: 1;
-    width: 2px;
+    width: 1px;
     background: var(--color-border);
     margin-top: 4px;
     min-height: 2rem;
@@ -166,43 +151,34 @@ import milestones from "../data/chronik.json";
   }
 
   .timeline-content {
-    padding-bottom: 1.75rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid transparent;
   }
 
   .timeline-text {
     color: var(--color-text-muted);
-    font-size: 0.95rem;
-    line-height: 1.75;
-    padding-top: 0.15rem;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    padding-top: 0.1rem;
+    max-width: 65ch;
+    text-wrap: pretty;
   }
 
-  .timeline-card {
-    background: var(--color-surface);
-    border-left: 3px solid var(--color-red);
-    border-radius: 0 8px 8px 0;
-    padding: 1rem 1.25rem;
+  .timeline-entry--highlight .timeline-text {
     color: var(--color-text);
-    font-size: 0.95rem;
-    line-height: 1.75;
-    box-shadow: var(--shadow-card);
-    transition: background 0.2s ease;
-  }
-
-  .timeline-card:hover {
-    background: var(--color-surface-hover);
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.65;
+    padding-top: 0.05rem;
   }
 
   @media (max-width: 600px) {
     .timeline-entry {
       grid-template-columns: 1fr;
       gap: 0;
-      padding-left: 1.25rem;
-      border-left: 2px solid var(--color-border);
+      padding-left: 1.35rem;
+      border-left: 1px solid var(--color-border);
       position: relative;
-    }
-
-    .timeline-entry--highlight {
-      border-left-color: var(--color-red);
     }
 
     .timeline-connector {
@@ -215,29 +191,26 @@ import milestones from "../data/chronik.json";
       padding-bottom: 0.25rem;
     }
 
-    .timeline-year span {
-      font-size: 1rem;
-    }
-
     .timeline-content {
-      padding-bottom: 1.5rem;
+      padding-bottom: 1.75rem;
     }
 
     .timeline-entry::before {
       content: "";
       position: absolute;
-      left: -5px;
+      left: -4px;
       top: 0.45rem;
-      width: 8px;
-      height: 8px;
-      background: var(--color-red-dark);
+      width: 7px;
+      height: 7px;
+      background: var(--color-border);
       border-radius: 50%;
-      border: 2px solid var(--color-bg);
     }
 
     .timeline-entry--highlight::before {
+      left: -5px;
+      width: 9px;
+      height: 9px;
       background: var(--color-red);
-      box-shadow: 0 0 8px rgba(200, 16, 46, 0.5);
     }
   }
 </style>

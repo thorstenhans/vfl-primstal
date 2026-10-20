@@ -5,44 +5,39 @@ import stadiumImage from "../images/allerswaldstadion.jpg";
 
 <section id="location" class="location">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Unser Stadion</h2>
-      <p class="section-subtitle">Das Allerswaldstadion – unser Zuhause seit 1959.</p>
-    </div>
-
     <div class="location-grid">
-      <!-- Left: Info card -->
-      <div class="info-card">
-        <h3 class="stadium-name">Allerswaldstadion</h3>
-        <div class="red-divider"></div>
+      <!-- Left: Open editorial stadium details -->
+      <div class="location-details">
+        <p class="section-eyebrow">Heimspielstätte &middot; Seit 1959</p>
+        <h2 class="section-title">Allerswaldstadion</h2>
+        <p class="location-lead">
+          Das Allerswaldstadion in Primstal ist seit 1959 das sportliche Zuhause des VfL Primstal.
+        </p>
 
-        <div class="address-block">
-          <div class="address-row">
-            <span class="address-icon">📍</span>
-            <span class="address-text">Am Schwimmbad 10</span>
+        <dl class="location-ledger">
+          <div class="ledger-row">
+            <dt class="ledger-label">Anschrift</dt>
+            <dd class="ledger-value">Am Schwimmbad 10, 66620 Nonnweiler-Primstal</dd>
           </div>
-          <div class="address-row">
-            <span class="address-icon">🏙️</span>
-            <span class="address-text">66620 Nonnweiler-Primstal</span>
-          </div>
-          <div class="address-row">
-            <span class="address-icon">🗺️</span>
-            <span class="address-text">Saarland, Deutschland</span>
-          </div>
+        </dl>
+
+        <div class="location-actions">
+          <a
+            href="https://www.google.com/maps/search/Allerswaldstadion+Primstal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            In Google Maps öffnen &rarr;
+          </a>
+          <a href="/vfl-primstal/stadion" class="location-more-link">
+            Mehr zum Stadion &rarr;
+          </a>
         </div>
-
-        <a
-          href="https://www.google.com/maps/search/Allerswaldstadion+Primstal"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary map-btn"
-        >
-          In Google Maps öffnen &rarr;
-        </a>
       </div>
 
       <!-- Right: Stadium photo -->
-      <div class="stadium-photo-card">
+      <div class="stadium-photo-frame">
         <Image
           src={stadiumImage}
           alt="Luftaufnahme des Allerswaldstadions in Nonnweiler-Primstal"
@@ -61,83 +56,78 @@ import stadiumImage from "../images/allerswaldstadion.jpg";
     padding: 6rem 0;
   }
 
-  .section-header {
-    margin-bottom: 3.5rem;
-  }
-
   .location-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: stretch;
+    grid-template-columns: 5fr 7fr;
+    gap: 4rem;
+    align-items: center;
   }
 
-  @media (max-width: 768px) {
-    .location-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-
-  /* Left - info card */
-  .info-card {
-    background: var(--color-surface);
-    border-radius: 12px;
-    padding: 2.5rem;
-    border: 1px solid var(--color-border);
+  .location-details {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
   }
 
-  .stadium-name {
-    font-size: 1.5rem;
+  .location-lead {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 0 2rem;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  .location-ledger {
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 2.25rem;
+  }
+
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+
+  .ledger-label {
+    font-size: 0.72rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-red);
+  }
+
+  .ledger-value {
+    font-size: 0.96rem;
+    font-weight: 600;
     color: var(--color-text);
-    margin: 0;
+    line-height: 1.45;
   }
 
-  .red-divider {
-    width: 40px;
-    height: 2px;
-    background: var(--color-red);
-    margin-top: -0.75rem;
-  }
-
-  .address-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .address-row {
+  .location-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
-  .address-icon {
-    font-size: 1rem;
-    color: var(--color-red);
-    min-width: 1.25rem;
-  }
-
-  .address-text {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-  }
-
-  .map-btn {
-    align-self: flex-start;
-    display: inline-block;
+  .location-more-link {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-text);
     text-decoration: none;
+    transition: color 0.2s ease;
   }
 
-  /* Right - stadium photo */
-  .stadium-photo-card {
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
+  .location-more-link:hover {
+    color: var(--color-red);
+  }
+
+  .stadium-photo-frame {
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--color-border);
     background-color: var(--color-surface);
@@ -148,5 +138,17 @@ import stadiumImage from "../images/allerswaldstadion.jpg";
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  @media (max-width: 900px) {
+    .location-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .ledger-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
   }
 </style>

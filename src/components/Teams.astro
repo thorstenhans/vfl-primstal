@@ -2,69 +2,60 @@
 // Teams.astro
 const teams = [
   {
+    index: '01',
     name: '1. Mannschaft',
     href: '/vfl-primstal/teams/1-mannschaft',
     league: 'Verbandsliga Nord-Ost',
     description: 'Unsere erste Mannschaft spielt in der Verbandsliga Nord-Ost – der zweithöchsten Amateurklasse des Saarlandes.',
     fupaUrl: 'https://www.fupa.net/team/vfl-primstal-m1-2026-27',
-    icon: '⚽',
-    accent: true,
   },
   {
+    index: '02',
     name: '2. Mannschaft',
     href: '/vfl-primstal/teams/2-mannschaft',
     league: 'Landesliga Nord',
     description: 'Die zweite Mannschaft in der Landesliga Nord bietet eine starke Wettkampfplattform für talentierte Spieler.',
     fupaUrl: 'https://www.fupa.net/team/vfl-primstal-m2-2026-27',
-    icon: '⚽',
-    accent: false,
   },
   {
+    index: '03',
     name: 'Jugend',
     href: '/vfl-primstal/teams/jugend',
     league: 'VfL & JFG Schaumberg-Prims',
     description: 'Nachwuchsförderung von der G- bis zur E-Jugend beim VfL Primstal sowie ab der D-Jugend in der JFG Schaumberg-Prims.',
-    icon: '🌟',
-    accent: false,
   },
   {
+    index: '04',
     name: 'Alte Herren',
     href: '/vfl-primstal/teams/alte-herren',
     league: 'Freizeitfußball',
     description: 'Fußball kennt kein Alter! Die Alten Herren pflegen Leidenschaft und Kameradschaft auf und neben dem Platz.',
-    icon: '🎖️',
-    accent: false,
   },
 ];
 ---
 
 <section id="teams" class="teams">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Unsere Mannschaften</h2>
-      <p class="section-subtitle">Vom Nachwuchs bis zu den Aktiven – der VfL Primstal bietet für jeden das Richtige.</p>
+  <div class="container container--narrow">
+    <div class="section-header section-header--center">
+      <p class="section-eyebrow section-eyebrow--center">Spielbetrieb</p>
+      <h2 class="section-title section-title--center">Unsere Mannschaften</h2>
+      <p class="section-subtitle section-subtitle--center">Vom Nachwuchs bis zu den Aktiven – der VfL Primstal bietet für jeden das Richtige.</p>
     </div>
 
-    <div class="teams-grid">
+    <div class="teams-directory">
       {teams.map((team) => (
-        <div class={"team-card" + (team.accent ? " team-card--accent" : "")}>
-          <div class="team-icon-wrap">
-            <span class="team-icon">{team.icon}</span>
+        <div class="team-row">
+          <span class="team-index">{team.index}</span>
+          <div class="team-identity">
+            <h3 class="team-name">
+              <a href={team.href} class="team-main-link">{team.name}</a>
+            </h3>
+            <span class="team-league">{team.league}</span>
           </div>
-          <h3 class="team-name">
-            <a href={team.href} class="team-main-link">{team.name}</a>
-          </h3>
-          <span class="league-badge">{team.league}</span>
-          <p class="team-desc">{team.description}</p>
-          <div class="card-actions">
-            <span class="card-link card-link--primary" aria-hidden="true">
-              Zur Mannschaft &rarr;
+          <div class="team-actions">
+            <span class="team-link team-link--primary" aria-hidden="true">
+              Zur Mannschaft <span class="team-arrow">&rarr;</span>
             </span>
-            {team.fupaUrl && (
-              <a href={team.fupaUrl} target="_blank" rel="noopener noreferrer" class="card-link card-link--fupa">
-                Spielplan &amp; Tabelle (FuPa) &nearr;
-              </a>
-            )}
           </div>
         </div>
       ))}
@@ -75,57 +66,76 @@ const teams = [
 <style>
   .teams {
     background: var(--color-bg);
-    padding: 6rem 0;
+    padding: 6.5rem 0;
   }
 
-  .section-header {
+  .container--narrow {
+    max-width: 860px;
+  }
+
+  .section-header--center {
+    text-align: center;
     margin-bottom: 3.5rem;
   }
 
-  .teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
+  .teams-directory {
+    border-top: 2px solid var(--color-text);
   }
 
-  .team-card {
+  .team-row {
     position: relative;
-    background: var(--color-surface);
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.85rem 1.25rem 1.85rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+  }
+
+  .team-row::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-red);
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+    transform-origin: center;
+  }
+
+  .team-row:hover {
+    background-color: var(--color-surface);
+  }
+
+  .team-row:hover::before {
+    transform: scaleY(1);
+  }
+
+  .team-index {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--color-red);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .team-identity {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-
-  .team-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-border-accent);
-  }
-
-  .team-card--accent {
-    border-top: 3px solid var(--color-red);
-  }
-
-  .team-icon-wrap {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--color-red-glow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.35rem;
   }
 
   .team-name {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     color: var(--color-text);
     margin: 0;
+    line-height: 1.15;
+    transition: color 0.2s ease;
   }
 
   .team-main-link {
@@ -138,63 +148,77 @@ const teams = [
     position: absolute;
     inset: 0;
     z-index: 1;
-    border-radius: 12px;
   }
 
-  .league-badge {
-    display: inline-block;
-    background: var(--color-red-glow);
+  .team-league {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--color-red);
-    border-radius: 20px;
-    padding: 0.2rem 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin: 0.25rem 0;
-    align-self: flex-start;
+    transition: color 0.2s ease;
   }
 
-  .team-desc {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    line-height: 1.6;
-    margin: 0.25rem 0 0;
-    flex: 1;
-  }
-
-  .card-actions {
+  .team-actions {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-border);
+    align-items: center;
+    text-align: right;
   }
 
-  .card-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
+  .team-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--color-red);
     text-decoration: none;
-    transition: color 0.2s;
-    width: fit-content;
+    transition: color 0.2s ease;
   }
 
-  .team-card:hover .card-link--primary {
-    color: var(--color-red-light);
-    text-decoration: underline;
+  .team-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
-  .card-link--fupa {
-    position: relative;
-    z-index: 2;
-    color: var(--color-text-muted);
-    font-size: 0.8rem;
-    font-weight: 500;
+  /* Hover states requested by user: link and tagline turn to white */
+  .team-row:hover .team-name {
+    color: #ffffff;
   }
 
-  .card-link--fupa:hover {
-    color: var(--color-red-light);
-    text-decoration: underline;
+  .team-row:hover .team-league {
+    color: #ffffff;
+  }
+
+  .team-row:hover .team-link {
+    color: #ffffff;
+  }
+
+  .team-row:hover .team-arrow {
+    transform: translateX(4px);
+    color: #ffffff;
+  }
+
+  :global([data-theme="light"]) .team-row:hover .team-name,
+  :global([data-theme="light"]) .team-row:hover .team-league,
+  :global([data-theme="light"]) .team-row:hover .team-link,
+  :global([data-theme="light"]) .team-row:hover .team-arrow {
+    color: #000000;
+  }
+
+  @media (max-width: 720px) {
+    .team-row {
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      padding: 1.75rem 0.5rem;
+    }
+
+    .team-actions {
+      grid-column: 2;
+      align-items: flex-start;
+      text-align: left;
+      margin-top: 0.25rem;
+      min-width: 0;
+    }
   }
 </style>

@@ -4,75 +4,68 @@
 
 <section id="about" class="about">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Über uns</h2>
-      <p class="section-subtitle">Der VfL Primstal – ein Verein mit Geschichte, Herz und Zukunft.</p>
-    </div>
-
-    <div class="about-grid">
-      <!-- Left: Club card with stats -->
-      <div class="about-card">
+    <div class="about-split">
+      <!-- Left: Editorial narrative -->
+      <div class="about-editorial">
+        <p class="section-eyebrow">Der Verein</p>
+        <h2 class="section-title">Über uns</h2>
+        <p class="about-lead">
+          Der VfL Primstal – ein Verein mit Geschichte, Herz und Zukunft.
+        </p>
         <p class="about-description">
           Seit 1931 leben wir Fußball im Herzen des Saarlandes. Der VfL Primstal
           steht für Leidenschaft, Gemeinschaft und sportliche Exzellenz – auf dem
           Platz und abseits davon.
         </p>
-
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-icon">🗓️</span>
-            <span class="stat-label">Gegründet</span>
-            <span class="stat-value">1931</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-icon">📍</span>
-            <span class="stat-label">Heimat</span>
-            <span class="stat-value">Nonnweiler-Primstal</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-icon">🏟️</span>
-            <span class="stat-label">Stadion</span>
-            <span class="stat-value">Allerswaldstadion</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-icon">❤️</span>
-            <span class="stat-label">Region</span>
-            <span class="stat-value">Saarland</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Right: Feature highlights -->
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <span class="feature-icon">⚽</span>
-          </div>
-          <div class="feature-body">
-            <h3 class="feature-title">Aktiver Fußball</h3>
-            <p class="feature-desc">Von der G-Jugend bis zur Verbandsliga – bei uns kickt jeder.</p>
+      <!-- Right: Architectural numbered pillar list -->
+      <div class="pillar-ledger">
+        <div class="pillar-row">
+          <span class="pillar-index">01</span>
+          <div class="pillar-body">
+            <h3 class="pillar-title">Aktiver Fußball</h3>
+            <p class="pillar-desc">Von der G-Jugend bis zur Verbandsliga – bei uns kickt jeder.</p>
           </div>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <span class="feature-icon">🤝</span>
-          </div>
-          <div class="feature-body">
-            <h3 class="feature-title">Starke Gemeinschaft</h3>
-            <p class="feature-desc">Mehr als ein Verein – wir sind eine Familie aus Primstal und Umgebung.</p>
+        <div class="pillar-row">
+          <span class="pillar-index">02</span>
+          <div class="pillar-body">
+            <h3 class="pillar-title">Starke Gemeinschaft</h3>
+            <p class="pillar-desc">Mehr als ein Verein – wir sind eine Familie aus Primstal und Umgebung.</p>
           </div>
         </div>
 
-        <a href="/vfl-primstal/chronik" class="feature-card feature-card--link">
-          <div class="feature-icon-wrap">
-            <span class="feature-icon">🏆</span>
-          </div>
-          <div class="feature-body">
-            <h3 class="feature-title">Stolze Geschichte &rarr;</h3>
-            <p class="feature-desc">Seit 1931 schreiben wir Sportgeschichte im Saarland.</p>
+        <a href="/vfl-primstal/chronik" class="pillar-row pillar-row--link">
+          <span class="pillar-index">03</span>
+          <div class="pillar-body">
+            <h3 class="pillar-title">
+              Stolze Geschichte <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+            </h3>
+            <p class="pillar-desc">Seit 1931 schreiben wir Sportgeschichte im Saarland.</p>
           </div>
         </a>
+      </div>
+    </div>
+
+    <!-- Bottom: Full-width horizontal key-facts ledger -->
+    <div class="stats-strip">
+      <div class="stat-cell">
+        <span class="stat-label">Gegründet</span>
+        <span class="stat-value">1931</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-label">Heimat</span>
+        <span class="stat-value">Primstal</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-label">Stadion</span>
+        <span class="stat-value">Allerswaldstadion</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-label">Region</span>
+        <span class="stat-value">Saarland</span>
       </div>
     </div>
   </div>
@@ -82,143 +75,182 @@
   .about {
     background: var(--color-bg-alt);
     padding: 6rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .section-header {
-    margin-bottom: 3.5rem;
-  }
-
-  .about-grid {
+  .about-split {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     gap: 4rem;
     align-items: start;
+    margin-bottom: 4rem;
   }
 
-  @media (max-width: 768px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-  }
-
-  /* Left column – about card */
-  .about-card {
-    background: var(--color-surface);
-    border-radius: 12px;
-    padding: 2.5rem;
-    border: 1px solid var(--color-border);
+  .about-lead {
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin: 0.5rem 0 1.25rem;
+    max-width: 52ch;
+    text-wrap: pretty;
   }
 
   .about-description {
     color: var(--color-text-muted);
-    font-size: 1rem;
+    font-size: 1.02rem;
     line-height: 1.75;
-    margin: 0 0 0.5rem;
+    max-width: 58ch;
+    margin: 0;
+    text-wrap: pretty;
   }
 
-  .stats-grid {
+  /* Right column – Architectural numbered pillar list */
+  .pillar-ledger {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pillar-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .stat-icon {
-    font-size: 1.25rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-  }
-
-  .stat-value {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--color-text);
-  }
-
-  /* Right column – feature cards */
-  .features {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .feature-card {
-    background: var(--color-surface);
-    border-left: 3px solid var(--color-red);
-    border-radius: 0 8px 8px 0;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
+    grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
-    transition: background 0.2s;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: start;
   }
 
-  .feature-card:last-child {
-    margin-bottom: 0;
-  }
-
-  .feature-card:hover {
-    background: var(--color-surface-hover);
-  }
-
-  .feature-card--link {
+  .pillar-row--link {
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+    transition: color 0.2s ease;
   }
 
-  .feature-card--link:hover {
-    transform: translateX(4px);
-  }
-
-  .feature-card--link:hover .feature-title {
+  .pillar-index {
+    font-size: 0.8rem;
+    font-weight: 800;
     color: var(--color-red);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    padding-top: 0.2rem;
   }
 
-  .feature-icon-wrap {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    border-radius: 50%;
-    background: var(--color-red-glow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-  }
-
-  .feature-body {
+  .pillar-body {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
   }
 
-  .feature-title {
-    font-size: 1rem;
+  .pillar-title {
+    font-size: 1.08rem;
     font-weight: 700;
     color: var(--color-text);
     margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.2s ease;
   }
 
-  .feature-desc {
-    font-size: 0.875rem;
+  .pillar-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .pillar-row--link:hover .pillar-title {
+    color: var(--color-red);
+  }
+
+  .pillar-row--link:hover .pillar-arrow {
+    transform: translateX(4px);
+  }
+
+  .pillar-desc {
+    font-size: 0.92rem;
     color: var(--color-text-muted);
     line-height: 1.6;
     margin: 0;
+    max-width: 55ch;
+  }
+
+  /* Bottom full-width horizontal key-facts ledger */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.75rem 1.5rem;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .stat-cell:first-child {
+    padding-left: 0;
+  }
+
+  .stat-cell:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  .stat-value {
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 900px) {
+    .about-split {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stats-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-cell {
+      padding: 1.35rem 1rem;
+    }
+
+    .stat-cell:nth-child(1),
+    .stat-cell:nth-child(3) {
+      padding-left: 0;
+    }
+
+    .stat-cell:nth-child(2) {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .stat-cell:nth-child(1),
+    .stat-cell:nth-child(2) {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-strip {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>

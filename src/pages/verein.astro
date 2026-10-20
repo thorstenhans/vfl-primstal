@@ -6,41 +6,40 @@ import { siteConfig } from "../config/site";
 
 const keyFacts = [
     {
-        icon: "🗓️",
         label: "Gründung",
         value: "1931",
         detail: "Über 90 Jahre Fußballtradition im Nordsaarland",
     },
     {
-        icon: "👥",
         label: "Mitglieder",
         value: "ca. 475",
         detail: "Aktive Spieler, Jugend, Alte Herren & Förderer",
     },
     {
-        icon: "⚫🔴",
         label: "Vereinsfarben",
         value: "Schwarz-Rot",
         detail: "Unsere Farben auf und neben dem Platz",
     },
     {
-        icon: "🏟️",
         label: "Allerswaldstadion",
-        value: "bis 3.500 Zuschauer",
-        detail: "Moderne Kunstrasenanlage in Nonnweiler-Primstal",
+        value: "3.500 Plätze",
+        detail: "Moderne Kunstrasenanlage in Primstal",
     },
 ];
 
 const clubPillars = [
     {
+        index: "01",
         title: "Aktive Mannschaften",
         text: "Der VfL Primstal ist seit vielen Jahren eine feste Größe im höherklassigen saarländischen Amateurfußball. Unsere 1. Mannschaft tritt in der Verbandsliga Nord-Ost an, während unsere 2. Mannschaft bereits seit 2013 durchgängig in der Landesliga Nord aktiv ist.",
     },
     {
+        index: "02",
         title: "Durchgängige Nachwuchsarbeit",
         text: "Von den kleinsten Kickern in der G-Jugend bis zur E-Jugend betreuen wir unsere Talente direkt im Verein. Ab der D- bis zur A-Jugend bündeln wir unsere Kräfte erfolgreich in der JFG Schaumberg-Prims, um jedem Jahrgang optimale Entwicklungsmöglichkeiten zu bieten.",
     },
     {
+        index: "03",
         title: "Alte Herren & Vereinsleben",
         text: "Fußball verbindet Generationen: Unsere Alte-Herren-Abteilung (AH) sowie zahlreiche Ehrenamtliche, Fans und Unterstützer machen den VfL Primstal zu einer lebendigen Gemeinschaft weit über die 90 Minuten auf dem Platz hinaus.",
     },
@@ -48,28 +47,28 @@ const clubPillars = [
 
 const subpages = [
     {
+        index: "01",
         title: "Unser Stadion",
-        badge: "Allerswaldstadion",
+        kicker: "Allerswaldstadion",
         href: "/vfl-primstal/stadion",
-        icon: "🏟️",
         description:
             "Unsere Kunstrasenanlage „Allerswaldstadion“ am Schwimmbad 10 in Primstal bietet Platz für bis zu 3.500 Zuschauer und ist seit 1959 das Herzstück unseres Vereinslebens.",
         cta: "Zum Stadion & Anfahrt",
     },
     {
+        index: "02",
         title: "Vereinschronik",
-        badge: "Seit 1931",
+        kicker: "Seit 1931",
         href: "/vfl-primstal/chronik",
-        icon: "📜",
         description:
             "Von der Gründung im Jahr 1931 über historische Meisterschaften und Aufstiege bis in die Gegenwart – entdecke die Geschichte des VfL Primstal.",
         cta: "Chronik entdecken",
     },
     {
+        index: "03",
         title: "Der Vorstand",
-        badge: "Vereinsführung",
+        kicker: "Vereinsführung",
         href: "/vfl-primstal/vorstand",
-        icon: "🤝",
         description:
             "Lerne das Präsidium und die Vorstandsmitglieder kennen, die sich ehrenamtlich für die sportliche und organisatorische Weiterentwicklung unseres Vereins einsetzen.",
         cta: "Vorstand ansehen",
@@ -87,7 +86,7 @@ const subpages = [
         <!-- Hero -->
         <section class="page-hero">
             <div class="container">
-                <span class="hero-badge">Seit 1931 &middot; Schwarz &amp; Rot</span>
+                <p class="hero-eyebrow">Seit 1931 &middot; Schwarz &amp; Rot</p>
                 <h1 class="hero-title">{siteConfig.club.fullName}</h1>
                 <p class="hero-subtitle">
                     Mit rund 475 Mitgliedern, einer modernen Kunstrasenanlage im Allerswaldstadion
@@ -100,18 +99,10 @@ const subpages = [
         <!-- Vorstellung & Eckdaten -->
         <section class="presentation-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="subsection-title">Der VfL Primstal im Überblick</h2>
-                    <p class="subsection-subtitle">
-                        Tradition, sportlicher Ehrgeiz und gelebte Kameradschaft in Nonnweiler-Primstal.
-                    </p>
-                </div>
-
-                <!-- 4 Key Facts aus der Vereinspräsentation -->
-                <div class="facts-grid">
+                <!-- 4 Key Facts Architectural Ledger -->
+                <div class="facts-ledger">
                     {keyFacts.map((fact) => (
-                        <div class="fact-card">
-                            <span class="fact-icon" aria-hidden="true">{fact.icon}</span>
+                        <div class="fact-cell">
                             <span class="fact-label">{fact.label}</span>
                             <strong class="fact-value">{fact.value}</strong>
                             <p class="fact-detail">{fact.detail}</p>
@@ -120,45 +111,57 @@ const subpages = [
                 </div>
 
                 <!-- 3 Säulen des Vereins -->
-                <div class="pillars-grid">
-                    {clubPillars.map((pillar) => (
-                        <article class="pillar-card">
-                            <h3 class="pillar-title">{pillar.title}</h3>
-                            <p class="pillar-text">{pillar.text}</p>
-                        </article>
-                    ))}
+                <div class="pillars-section">
+                    <div class="section-header">
+                        <p class="section-eyebrow">Vereinsprofil</p>
+                        <h2 class="subsection-title">Der VfL Primstal im Überblick</h2>
+                        <p class="subsection-subtitle">
+                            Tradition, sportlicher Ehrgeiz und gelebte Kameradschaft in Primstal.
+                        </p>
+                    </div>
+
+                    <div class="pillars-grid">
+                        {clubPillars.map((pillar) => (
+                            <article class="pillar-col">
+                                <span class="pillar-index">{pillar.index}</span>
+                                <h3 class="pillar-title">{pillar.title}</h3>
+                                <p class="pillar-text">{pillar.text}</p>
+                            </article>
+                        ))}
+                    </div>
                 </div>
 
-                <div class="section-divider"></div>
+                <!-- Unterseiten-Verzeichnis: Stadion, Chronik, Vorstand -->
+                <div class="subpages-section">
+                    <div class="section-header">
+                        <p class="section-eyebrow">Weiterführende Seiten</p>
+                        <h2 class="subsection-title">Mehr über unseren Verein</h2>
+                        <p class="subsection-subtitle">
+                            Erfahre mehr über unsere Heimspielstätte, unsere Historie und die Menschen hinter dem VfL.
+                        </p>
+                    </div>
 
-                <!-- Kacheln zu den Unterseiten: Stadion, Chronik, Vorstand -->
-                <div class="section-header">
-                    <h2 class="subsection-title">Mehr über unseren Verein</h2>
-                    <p class="subsection-subtitle">
-                        Erfahre mehr über unsere Heimspielstätte, unsere Historie und die Menschen hinter dem VfL.
-                    </p>
-                </div>
-
-                <div class="subpages-grid">
-                    {subpages.map((page) => (
-                        <article class="subpage-card">
-                            <div class="subpage-top">
-                                <span class="subpage-badge">{page.badge}</span>
-                                <span class="subpage-icon" aria-hidden="true">{page.icon}</span>
-                            </div>
-                            <h3 class="subpage-title">
-                                <a href={page.href} class="subpage-main-link">
-                                    {page.title}
-                                </a>
-                            </h3>
-                            <p class="subpage-desc">{page.description}</p>
-                            <div class="subpage-footer">
-                                <span class="subpage-cta" aria-hidden="true">
-                                    {page.cta} &rarr;
-                                </span>
-                            </div>
-                        </article>
-                    ))}
+                    <div class="subpages-directory">
+                        {subpages.map((page) => (
+                            <article class="subpage-row">
+                                <span class="subpage-index">{page.index}</span>
+                                <div class="subpage-identity">
+                                    <span class="subpage-kicker">{page.kicker}</span>
+                                    <h3 class="subpage-title">
+                                        <a href={page.href} class="subpage-main-link">
+                                            {page.title}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <p class="subpage-desc">{page.description}</p>
+                                <div class="subpage-action">
+                                    <span class="subpage-cta" aria-hidden="true">
+                                        {page.cta} <span class="subpage-arrow">&rarr;</span>
+                                    </span>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -187,7 +190,7 @@ const subpages = [
         inset: 0;
         background: radial-gradient(
             ellipse at 30% 60%,
-            rgba(200, 16, 46, 0.08) 0%,
+            rgba(200, 16, 46, 0.07) 0%,
             transparent 65%
         );
         pointer-events: none;
@@ -197,214 +200,195 @@ const subpages = [
         position: relative;
     }
 
-    .hero-badge {
-        display: inline-block;
-        background: var(--color-red-glow);
-        border: 1px solid var(--color-border-accent);
-        color: var(--color-red);
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        padding: 0.3rem 0.9rem;
-        border-radius: 20px;
-        margin-bottom: 1.25rem;
-    }
-
     .hero-title {
-        font-size: clamp(2rem, 4.5vw, 3.25rem);
+        font-size: clamp(2.15rem, 4.5vw, 3.35rem);
         font-weight: 800;
         color: var(--color-text);
-        line-height: 1.15;
+        line-height: 1.1;
+        letter-spacing: -0.025em;
         margin-bottom: 1rem;
-        padding-left: 1rem;
-        border-left: 4px solid var(--color-red);
+        text-wrap: balance;
     }
 
     .hero-subtitle {
         color: var(--color-text-muted);
         font-size: 1.05rem;
-        max-width: 720px;
+        max-width: 65ch;
         line-height: 1.7;
-        padding-left: 1.25rem;
+        text-wrap: pretty;
     }
 
     .presentation-section {
         background: var(--color-bg-alt);
-        padding: 4.5rem 0 6rem;
+        padding: 0 0 6rem;
     }
 
-    .section-header {
-        margin-bottom: 2rem;
-    }
-
-    .subsection-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--color-text);
-        line-height: 1.2;
-        margin: 0 0 0.35rem;
-        padding-left: 1rem;
-        border-left: 4px solid var(--color-red);
-    }
-
-    .subsection-subtitle {
-        color: var(--color-text-muted);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        padding-left: 1.25rem;
-        margin: 0;
-    }
-
-    /* Key Facts Grid */
-    .facts-grid {
+    /* Key Facts Architectural Ledger */
+    .facts-ledger {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 6rem;
     }
 
-    .fact-card {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-top: 3px solid var(--color-red);
-        border-radius: 12px;
-        padding: 1.75rem 1.5rem;
+    .fact-cell {
+        padding: 2.5rem 2rem;
+        border-right: 1px solid var(--color-border);
         display: flex;
         flex-direction: column;
-        gap: 0.35rem;
+        gap: 0.4rem;
     }
 
-    .fact-icon {
-        font-size: 1.5rem;
-        margin-bottom: 0.25rem;
+    .fact-cell:first-child {
+        padding-left: 0;
+    }
+
+    .fact-cell:last-child {
+        border-right: none;
+        padding-right: 0;
     }
 
     .fact-label {
         font-size: 0.72rem;
-        font-weight: 600;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         color: var(--color-red);
     }
 
     .fact-value {
-        font-size: 1.4rem;
+        font-size: clamp(1.35rem, 2.2vw, 1.75rem);
         font-weight: 800;
+        letter-spacing: -0.02em;
         color: var(--color-text);
-        line-height: 1.2;
+        line-height: 1.15;
+        font-variant-numeric: tabular-nums;
     }
 
     .fact-detail {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         color: var(--color-text-muted);
-        line-height: 1.5;
+        line-height: 1.6;
         margin: 0.2rem 0 0;
     }
 
     /* Club Pillars */
+    .pillars-section {
+        margin-bottom: 6.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
     .pillars-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        gap: 3.5rem;
     }
 
-    .pillar-card {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-left: 4px solid var(--color-red);
-        border-radius: 12px;
-        padding: 1.75rem;
+    .pillar-col {
+        border-top: 2px solid var(--color-border);
+        padding-top: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .pillar-col:first-child {
+        border-top-color: var(--color-red);
+    }
+
+    .pillar-index {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: var(--color-red);
+        letter-spacing: 0.08em;
+        font-variant-numeric: tabular-nums;
     }
 
     .pillar-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--color-text);
-        margin: 0 0 0.65rem;
-    }
-
-    .pillar-text {
-        font-size: 0.92rem;
-        color: var(--color-text-muted);
-        line-height: 1.7;
-        margin: 0;
-    }
-
-    /* Divider */
-    .section-divider {
-        height: 1px;
-        background: var(--color-border);
-        margin: 4rem 0;
-        position: relative;
-    }
-
-    .section-divider::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: -1px;
-        width: 64px;
-        height: 3px;
-        background: var(--color-red);
-    }
-
-    /* Subpages Cards Grid */
-    .subpages-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
-    }
-
-    .subpage-card {
-        position: relative;
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 14px;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.85rem;
-        transition:
-            transform 0.2s ease,
-            border-color 0.2s ease,
-            box-shadow 0.2s ease;
-    }
-
-    .subpage-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--color-border-accent);
-        box-shadow: 0 12px 32px rgba(200, 16, 46, 0.1);
-    }
-
-    .subpage-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .subpage-badge {
-        display: inline-block;
-        background: var(--color-red-glow);
-        color: var(--color-red);
-        border: 1px solid var(--color-border-accent);
-        border-radius: 20px;
-        padding: 0.22rem 0.8rem;
-        font-size: 0.72rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-    }
-
-    .subpage-icon {
-        font-size: 1.5rem;
-    }
-
-    .subpage-title {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
         font-weight: 800;
         color: var(--color-text);
         margin: 0;
+        letter-spacing: -0.015em;
+    }
+
+    .pillar-text {
+        font-size: 0.98rem;
+        color: var(--color-text-muted);
+        line-height: 1.78;
+        margin: 0;
+        text-wrap: pretty;
+    }
+
+    /* Subpages Directory */
+    .subpages-directory {
+        border-top: 2px solid var(--color-text);
+    }
+
+    .subpage-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: 3rem 1.2fr 2fr auto;
+        gap: 2.5rem;
+        align-items: baseline;
+        padding: 2.5rem 1rem 2.5rem 0.5rem;
+        border-bottom: 1px solid var(--color-border);
+        transition: background-color 0.2s ease;
+    }
+
+    .subpage-row::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--color-red);
+        transform: scaleY(0);
+        transition: transform 0.2s ease;
+    }
+
+    .subpage-row:hover {
+        background-color: var(--color-surface);
+    }
+
+    .subpage-row:hover::before {
+        transform: scaleY(1);
+    }
+
+    .subpage-index {
+        font-size: 0.85rem;
+        font-weight: 800;
+        color: var(--color-red);
+        letter-spacing: 0.08em;
+        font-variant-numeric: tabular-nums;
+        padding-left: 0.5rem;
+    }
+
+    .subpage-identity {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .subpage-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-red);
+    }
+
+    .subpage-title {
+        font-size: clamp(1.3rem, 2vw, 1.6rem);
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0;
+        letter-spacing: -0.02em;
+        transition: color 0.2s ease;
     }
 
     .subpage-main-link {
@@ -417,49 +401,99 @@ const subpages = [
         position: absolute;
         inset: 0;
         z-index: 1;
-        border-radius: 14px;
+    }
+
+    .subpage-row:hover .subpage-title {
+        color: var(--color-red);
     }
 
     .subpage-desc {
         color: var(--color-text-muted);
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         line-height: 1.65;
         margin: 0;
-        flex: 1;
+        max-width: 58ch;
+        text-wrap: pretty;
     }
 
-    .subpage-footer {
-        margin-top: 0.5rem;
-        padding-top: 0.9rem;
-        border-top: 1px solid var(--color-border);
+    .subpage-action {
+        text-align: right;
+        white-space: nowrap;
     }
 
     .subpage-cta {
         font-size: 0.88rem;
         font-weight: 700;
         color: var(--color-red);
-        transition: color 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
     }
 
-    .subpage-card:hover .subpage-cta {
-        color: var(--color-red-light);
-        text-decoration: underline;
+    .subpage-arrow {
+        display: inline-block;
+        transition: transform 0.2s ease;
     }
 
-    @media (max-width: 1024px) {
-        .facts-grid {
+    .subpage-row:hover .subpage-arrow {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 960px) {
+        .facts-ledger {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        .pillars-grid,
-        .subpages-grid {
+        .fact-cell:nth-child(1),
+        .fact-cell:nth-child(3) {
+            padding-left: 0;
+        }
+
+        .fact-cell:nth-child(2) {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .fact-cell:nth-child(1),
+        .fact-cell:nth-child(2) {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pillars-grid {
             grid-template-columns: 1fr;
+            gap: 2.25rem;
+        }
+
+        .subpage-row {
+            grid-template-columns: 2.5rem 1fr;
+            gap: 0.6rem 1rem;
+            padding: 1.75rem 0.5rem;
+        }
+
+        .subpage-desc,
+        .subpage-action {
+            grid-column: 2;
+        }
+
+        .subpage-action {
+            text-align: left;
+            margin-top: 0.25rem;
         }
     }
 
     @media (max-width: 560px) {
-        .facts-grid {
+        .facts-ledger {
             grid-template-columns: 1fr;
+        }
+
+        .fact-cell {
+            border-right: none;
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.35rem 0;
+        }
+
+        .fact-cell:last-child {
+            border-bottom: none;
         }
     }
 </style>
