@@ -30,7 +30,14 @@ const currentYear = new Date().getFullYear();
         <ul>
           {siteConfig.nav.map((item) => (
             <li>
-              <a href={item.href} class="footer-link">{item.label}</a>
+              <a
+                href={item.href}
+                class="footer-link"
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>

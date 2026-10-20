@@ -25,6 +25,7 @@ export const siteConfig = {
     facebook: "https://www.facebook.com/vflprimstal",
     instagram: "https://www.instagram.com/vflprimstal",
   },
+  fanShopUrl: "https://vfl-primstal.fan12.de",
   nav: [
     {
       label: "Verein",
@@ -57,6 +58,11 @@ export const siteConfig = {
           href: "/vfl-primstal/teams/jugend/vfl-primstal",
         },
       ],
+    },
+    {
+      label: "Fan-Shop",
+      href: "https://vfl-primstal.fan12.de",
+      external: true,
     },
     { label: "Kontakt", href: "/vfl-primstal/#contact" },
   ],

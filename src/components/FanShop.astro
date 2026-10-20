@@ -1,0 +1,274 @@
+---
+import { Image } from "astro:assets";
+import { siteConfig } from "../config/site";
+import imgTrikot from "../images/fanshop/jako-trikot.jpg";
+import imgHoodie from "../images/fanshop/jako-hoodie.jpg";
+import imgSchal from "../images/fanshop/fanschal-identity.jpg";
+import imgBeanie from "../images/fanshop/beanie-sticklogo.jpg";
+
+const products = [
+  {
+    name: "Jako Trikot Club 92",
+    category: "Teamwear",
+    price: "ab 17,99 €",
+    image: imgTrikot,
+    url: "https://vfl-primstal.fan12.de/shop/jako-trikot-club-92-kurzarm/",
+  },
+  {
+    name: "Jako Kapuzensweat Wardrobe",
+    category: "Streetwear & Freizeit",
+    price: "53,99 €",
+    image: imgHoodie,
+    url: "https://vfl-primstal.fan12.de/shop/jako-kapuzensweat-wardrobe/",
+  },
+  {
+    name: "Fanschal Identity",
+    category: "Fanartikel",
+    price: "19,95 €",
+    image: imgSchal,
+    url: "https://vfl-primstal.fan12.de/shop/fanschal-identity/",
+  },
+  {
+    name: "Beanie mit Sticklogo",
+    category: "Accessoires",
+    price: "22,95 €",
+    image: imgBeanie,
+    url: "https://vfl-primstal.fan12.de/shop/beanie-sticklogo/",
+  },
+];
+---
+
+<section id="fanshop" class="section fanshop-section">
+  <div class="container">
+    <div class="fanshop-header">
+      <div>
+        <p class="section-label">Schwarz-Rot tragen</p>
+        <h2 class="section-title">Offizieller <span>Fan-Shop</span></h2>
+        <div class="red-line"></div>
+        <p class="section-subtitle">
+          Zeig Flagge für den VfL Primstal! Ob Trikot, Hoodie, Fanschal oder
+          Beanie – in unserem offiziellen Online-Shop findest du hochwertige
+          Teamwear und Fanartikel für Groß und Klein.
+        </p>
+      </div>
+      <div class="fanshop-header-cta">
+        <a
+          href={siteConfig.fanShopUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          Zum Fan-Shop
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="products-grid">
+      {
+        products.map((product) => (
+          <a
+            href={product.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="product-card card"
+          >
+            <div class="product-image-wrap">
+              <Image
+                src={product.image}
+                alt={`VfL Primstal Fan-Shop – ${product.name}`}
+                class="product-img"
+                width={450}
+                height={560}
+              />
+              <span class="product-badge">{product.category}</span>
+            </div>
+            <div class="product-body">
+              <h3 class="product-title">{product.name}</h3>
+              <div class="product-footer">
+                <span class="product-price">{product.price}</span>
+                <span class="product-action">
+                  Im Shop ansehen
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .fanshop-section {
+    background: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .fanshop-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .fanshop-header-cta {
+    flex-shrink: 0;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-red);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .product-image-wrap {
+    position: relative;
+    background: #ffffff;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  .product-card:hover .product-img {
+    transform: scale(1.05);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(13, 13, 13, 0.82);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  .product-body {
+    padding: 1.25rem 1.35rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .product-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.35;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product-price {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .product-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-red);
+    transition: gap 0.2s ease;
+  }
+
+  .product-card:hover .product-action {
+    gap: 0.55rem;
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .fanshop-header {
+      align-items: flex-start;
+    }
+  }
+</style>
