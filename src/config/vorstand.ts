@@ -162,12 +162,4 @@ export const members: VorstandMember[] = [
     imageUrl: personPlaceholder.src,
     pinned: false,
   },
-  {
-    firstname: "Sven",
-    lastname: "Seimetz",
-    position: "Orga-Team",
-    email: "presse@vfl-primstal.de",
-    imageUrl: personPlaceholder.src,
-    pinned: false,
-  },
 ];

@@ -2,41 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
-const milestones = [
-  { year: "1931", text: "Gründungsversammlung Mitte des Jahres. Johann Müller wird zum 1. Vorsitzenden gewählt. Erster Sportplatz auf dem Wiesengelände in der „Klaus“.", highlight: true },
-  { year: "1934", text: "Fusion mit der DJK Primstal. Matthias Collet übernimmt das Amt des 1. Vorsitzenden.", highlight: false },
-  { year: "1936", text: "Ein einzigartiges Kuriosum der Vereinsgeschichte: Der VfL Primstal erringt in einem Jahr gleich drei Meisterschaften.", highlight: false },
-  { year: "1937", text: "Erste Meisterschaft einer Primstaler Mannschaft durch die A-Jugend.", highlight: false },
-  { year: "1945/46", text: "Wiedergründung des Vereins nach dem 2. Weltkrieg (15.09.1945). Umbenennung zu „Kickers Primstal“ auf Anweisung der Alliierten, da Vereinsnamen nicht an die Zeit vor 1933 erinnern durften.", highlight: false },
-  { year: "1953", text: "Rückbenennung in „Verein für Leibesübungen Primstal“ auf Beschluss der Generalversammlung. Meisterschaft in der Kreisklasse II und Aufstieg in die Kreisklasse I.", highlight: false },
-  { year: "1956", text: "25-jähriges Vereinsjubiläum.", highlight: false },
-  { year: "1959", text: "Einweihung des neuen Sportplatzes im „Allerswald“ mit Umkleidekabinen und Schulungsräumen am 15. August.", highlight: true },
-  { year: "1965", text: "Das bis dahin erfolgreichste Jahr: Aufstieg der 1. Mannschaft in die 2. Amateurliga. Meisterschaft der 2. Mannschaft. Die C-Jugend wird Gruppen-, Staffel-, Kreis- und Saarlandmeister.", highlight: true },
-  { year: "1970", text: "Bau der Flutlichtanlage – der einzigen in der gesamten Region – vollständig in Eigenregie und durch Spenden der Vereinsmitglieder finanziert.", highlight: false },
-  { year: "1971", text: "40-jähriges Vereinsjubiläum. Schirmherr: Justizminister Alois Becker – selbst Vereinsmitglied.", highlight: false },
-  { year: "1976", text: "Die Damenmannschaft des VfL wird Meister und steigt in die höchste saarländische Spielklasse auf.", highlight: false },
-  { year: "1978", text: "Meister der B-Klasse und Aufstieg in die Bezirksliga Nord.", highlight: false },
-  { year: "1981", text: "Meister der Bezirksliga Nord und Aufstieg in die Landesliga Nord-Ost. 50-jähriges Vereinsjubiläum. Schirmherr: Ministerpräsident Werner Zeyer.", highlight: true },
-  { year: "1985", text: "Herausgabe der Vereinszeitung „Allerswald-Echo“.", highlight: false },
-  { year: "1991", text: "60-jähriges Vereinsjubiläum. Schirmherr: Finanzminister Hans Kasper. Alwin Arm wird zum 1. Vorsitzenden gewählt.", highlight: false },
-  { year: "1994", text: "Meister der Bezirksliga Nord und Aufstieg in die Landesliga Nord-Ost. A-Jugend wird Saarlandpokalsieger; im DFB-Pokal Niederlage gegen den FC Augsburg.", highlight: false },
-  { year: "1996", text: "VfL Primstal erhält die Anerkennungsurkunde der „Sepp-Herberger-Stiftung“ für hervorragende Jugendarbeit.", highlight: false },
-  { year: "1999", text: "Bau des Kunstrasenplatzes. Die 1. Mannschaft besiegt im Saarlandpokal den Regionalligisten FC Homburg.", highlight: false },
-  { year: "2000", text: "Offizielle Einweihung des neuen Kunstrasenplatzes am 4. August.", highlight: false },
-  { year: "2001", text: "70-jähriges Vereinsjubiläum. Schirmherr: Landrat Franz-Josef Schumann. Fertigstellung des Sportlerheim-Anbaus.", highlight: true },
-  { year: "2006", text: "75-jähriges Vereinsjubiläum. Schirmherr: Ministerpräsident Peter Müller.", highlight: true },
-  { year: "2010", text: "Sportlich eines der erfolgreichsten Jahre. Zahlreiche Jugendmeisterschaften. Gründung der JFG Schaumberg-Prims. Ministerin Annegret Kramp-Karrenbauer als Ehrengast bei der Meisterschaftsfeier.", highlight: true },
-  { year: "2011", text: "80-jähriges Vereinsjubiläum. Schirmherr: Landrat Udo Recktenwald.", highlight: false },
-  { year: "2012", text: "Erneuerung des Kunstrasenplatzes. A- und C-Jugend der JFG steigen in die Regionalliga Südwest auf.", highlight: false },
-  { year: "2013", text: "Größter sportlicher Erfolg in der Vereinsgeschichte: Die 1. Mannschaft wird Meister der Verbandsliga Nord und steigt in die Saarlandliga – die höchste saarländische Amateurliga – auf.", highlight: true },
-  { year: "2014", text: "Im ersten Saarlandliga-Jahr ein hervorragender 6. Tabellenplatz. 2. Mannschaft steigt in die Landesliga Nord auf. Erster Auto-Schwinn-Cup ausgetragen.", highlight: false },
-  { year: "2016", text: "Das beste Jahr der Vereinshistorie: 1. Mannschaft belegt Platz 3 in der Karlsbergliga. 2. Mannschaft wird Meister der Landesliga Nord und steigt in die Verbandsliga auf.", highlight: false },
-  { year: "2017", text: "85-jähriges Vereinsjubiläum. Sensationeller 2. Platz in der Karlsbergliga vor 3.000 Zuschauern im Allerswaldstadion – beste Platzierung der Vereinsgeschichte. A-Jugend der JFG wird Meister der Verbandsliga.", highlight: true },
-  { year: "2018", text: "Einzug in die 5. Runde des Saarlandpokals (1:3 gegen 1. FC Saarbrücken). Renovierung des Clubheims.", highlight: false },
-  { year: "2019", text: "Jugendfußballcamp mit der Fundación Real Madrid. Kamera-Installation für Live-Übertragungen auf Sporttotal.", highlight: false },
-  { year: "2020", text: "Besuch der Evonik Fußballakademie von Borussia Dortmund im Allerswaldstadion. Corona-bedingte Saisonabbrüche.", highlight: false },
-];
+import milestones from "../data/chronik.json";
 ---
 <Layout
   title="Chronik – VfL Primstal"
