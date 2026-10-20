@@ -21,21 +21,26 @@
       <!-- Contact rows -->
       <div class="contact-row">
         <div class="contact-icon-wrap">
-          <span>📧</span>
+          <span aria-hidden="true">📧</span>
         </div>
         <div class="contact-info">
           <span class="contact-label">E-Mail</span>
-          <span class="contact-value">[E-MAIL EINTRAGEN]</span>
+          <a href="mailto:info@vfl-primstal.de" class="contact-value contact-link">
+            info@vfl-primstal.de
+          </a>
         </div>
       </div>
 
       <div class="contact-row">
         <div class="contact-icon-wrap">
-          <span>📞</span>
+          <span aria-hidden="true">🤝</span>
         </div>
         <div class="contact-info">
-          <span class="contact-label">Telefon</span>
-          <span class="contact-value">[TELEFON EINTRAGEN]</span>
+          <span class="contact-label">Direkter Kontakt</span>
+          <span class="contact-value">
+            Gerne kann auch das Präsidium direkt kontaktiert werden – alle Kontaktdaten findest du auf unserer{" "}
+            <a href="/vfl-primstal/vorstand" class="contact-inline-link">Vorstandsseite &rarr;</a>
+          </span>
         </div>
       </div>
 
@@ -159,6 +164,30 @@
     font-size: 0.95rem;
     color: var(--color-text);
     font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-red);
+    text-decoration: underline;
+  }
+
+  .contact-inline-link {
+    color: var(--color-red);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .contact-inline-link:hover {
+    color: var(--color-red-light);
+    text-decoration: underline;
   }
 
   /* Social row */

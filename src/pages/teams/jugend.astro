@@ -2,30 +2,107 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { siteConfig } from "../../config/site";
-
-const team = siteConfig.teams[3];
 ---
 
 <Layout
-    title={`${team.name} – VfL Primstal`}
-    description={team.description}
+    title="Jugendfußball – VfL Primstal"
+    description="Nachwuchsförderung beim VfL Primstal: G- bis E-Jugend im Verein sowie D- bis A-Jugend in der JFG Schaumberg-Prims."
 >
     <Header />
 
     <main class="team-page-main">
         <section class="page-hero">
             <div class="container">
-                <span class="hero-badge">{team.league}</span>
-                <h1 class="hero-title">{team.name}</h1>
-                <p class="hero-subtitle">{team.description}</p>
+                <span class="hero-badge">Nachwuchsförderung</span>
+                <h1 class="hero-title">Unsere Jugend</h1>
+                <p class="hero-subtitle">
+                    Die Zukunft unseres Vereins beginnt beim Nachwuchs. Mit Begeisterung,
+                    Teamgeist und qualifizierter Betreuung begleiten wir Kinder und Jugendliche
+                    von den ersten Schritten am Ball bis in den Aktivenbereich.
+                </p>
             </div>
         </section>
 
         <section class="team-section">
             <div class="container">
-                <div class="content-placeholder">
-                    <p>Weitere Informationen zur Jugend folgen in Kürze.</p>
+                <!-- Willkommen & Konzept -->
+                <div class="welcome-panel">
+                    <span class="welcome-label">Herzlich willkommen beim Nachwuchs</span>
+                    <h2 class="welcome-title">Gemeinsam stark – von den Bambinis bis zur A-Jugend</h2>
+                    <p class="welcome-text">
+                        Beim VfL Primstal steht die altersgerechte Förderung im Mittelpunkt:
+                        Die jüngeren Jahrgänge von der <strong>G- bis zur E-Jugend</strong> werden direkt
+                        vom <strong>VfL Primstal</strong> betreut, wo Freude an der Bewegung, Fairplay und
+                        die fußballerischen Grundlagen im Vordergrund stehen. Ab der <strong>D-Jugend</strong>
+                        wird das Geschehen durch die <strong>JFG Schaumberg-Prims</strong> bestimmt, um unseren
+                        Jugendlichen bis zur A-Jugend optimale sportliche Perspektiven in starken Mannschaften
+                        zu bieten.
+                    </p>
+                </div>
+
+                <!-- Auswahl der zwei Bereiche -->
+                <div class="section-header">
+                    <h2 class="subsection-title">Unsere Jugendbereiche</h2>
+                    <p class="subsection-subtitle">
+                        Wähle einen Bereich, um mehr über die einzelnen Altersklassen, Trainingszeiten und Ansprechpartner zu erfahren.
+                    </p>
+                </div>
+
+                <div class="youth-branches-grid">
+                    <!-- VfL Primstal (G- bis E-Jugend) -->
+                    <article class="branch-card branch-card--vfl">
+                        <div class="branch-top">
+                            <span class="age-pill">G- bis E-Jugend (U7 – U11)</span>
+                        </div>
+                        <h3 class="branch-title">
+                            <a href="/vfl-primstal/teams/jugend/vfl-primstal" class="branch-main-link">
+                                Jugend VfL Primstal
+                            </a>
+                        </h3>
+                        <p class="branch-desc">
+                            Unsere jüngsten Kickerinnen und Kicker starten direkt unter dem Dach des VfL Primstal.
+                            Von der G-Jugend (Bambini) über die F-Jugend bis zur E-Jugend vermitteln wir
+                            spielerisch Technik, Teamgeist und den Spaß am Vereinsleben.
+                        </p>
+                        <ul class="team-tags" aria-label="Mannschaften beim VfL Primstal">
+                            <li>G-Jugend (U7)</li>
+                            <li>F-Jugend (U9)</li>
+                            <li>E-Jugend (U10/U11)</li>
+                        </ul>
+                        <div class="branch-footer">
+                            <span class="branch-cta" aria-hidden="true">
+                                Zu den Mannschaften (G–E) &rarr;
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- JFG Schaumberg-Prims (D- bis A-Jugend) -->
+                    <article class="branch-card branch-card--jfg">
+                        <div class="branch-top">
+                            <span class="age-pill">D- bis A-Jugend (U13 – U19)</span>
+                        </div>
+                        <h3 class="branch-title">
+                            <a href="/vfl-primstal/teams/jugend/jfg-schaumberg-prims" class="branch-main-link">
+                                JFG Schaumberg-Prims
+                            </a>
+                        </h3>
+                        <p class="branch-desc">
+                            Ab der D-Jugend wird der Spiel- und Trainingsbetrieb durch die Jugendfördergemeinschaft
+                            <strong>JFG Schaumberg-Prims</strong> bestimmt. Hier wachsen die Talente der Stammvereine
+                            zusammen und bereiten sich gezielt auf den Übergang in den Seniorenfußball vor.
+                        </p>
+                        <ul class="team-tags" aria-label="Mannschaften der JFG Schaumberg-Prims">
+                            <li>D-Jugend (U13)</li>
+                            <li>C-Jugend (U15)</li>
+                            <li>B-Jugend (U17)</li>
+                            <li>A-Jugend (U19)</li>
+                        </ul>
+                        <div class="branch-footer">
+                            <span class="branch-cta" aria-hidden="true">
+                                Zu den Mannschaften (D–A) &rarr;
+                            </span>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -83,7 +160,7 @@ const team = siteConfig.teams[3];
         font-weight: 800;
         color: var(--color-text);
         line-height: 1.1;
-        margin-bottom: 1.0rem;
+        margin-bottom: 1rem;
         padding-left: 1rem;
         border-left: 4px solid var(--color-red);
     }
@@ -91,7 +168,7 @@ const team = siteConfig.teams[3];
     .hero-subtitle {
         color: var(--color-text-muted);
         font-size: 1.05rem;
-        max-width: 600px;
+        max-width: 660px;
         line-height: 1.7;
         padding-left: 1.25rem;
     }
@@ -101,12 +178,183 @@ const team = siteConfig.teams[3];
         padding: 4rem 0 6rem;
     }
 
-    .content-placeholder {
+    /* Welcome Panel */
+    .welcome-panel {
         background: var(--color-surface);
-        border: 1px dashed var(--color-border);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-red);
         border-radius: 12px;
-        padding: 3rem 2rem;
-        text-align: center;
+        padding: 2rem 2.25rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .welcome-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-red);
+        margin-bottom: 0.35rem;
+    }
+
+    .welcome-title {
+        font-size: clamp(1.35rem, 3vw, 1.85rem);
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0 0 0.75rem;
+    }
+
+    .welcome-text {
         color: var(--color-text-muted);
+        font-size: 1rem;
+        line-height: 1.75;
+        max-width: 820px;
+        margin: 0;
+    }
+
+    .welcome-text strong {
+        color: var(--color-text);
+        font-weight: 700;
+    }
+
+    /* Section Header */
+    .section-header {
+        margin-bottom: 1.75rem;
+    }
+
+    .subsection-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: 1.2;
+        margin: 0 0 0.35rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .subsection-subtitle {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+
+    /* Youth Branches Grid */
+    .youth-branches-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .branch-card {
+        position: relative;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-top: 3px solid var(--color-red);
+        border-radius: 14px;
+        padding: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .branch-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--color-border-accent);
+        box-shadow: 0 12px 32px rgba(200, 16, 46, 0.1);
+    }
+
+    .branch-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .age-pill {
+        display: inline-block;
+        background: var(--color-red-glow);
+        color: var(--color-red);
+        border: 1px solid var(--color-border-accent);
+        border-radius: 20px;
+        padding: 0.25rem 0.85rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .branch-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .branch-main-link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .branch-main-link::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        border-radius: 14px;
+    }
+
+    .branch-desc {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 0;
+        flex: 1;
+    }
+
+    .branch-desc strong {
+        color: var(--color-text);
+    }
+
+    .team-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0;
+    }
+
+    .team-tags li {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.3rem 0.75rem;
+        border-radius: 6px;
+    }
+
+    .branch-footer {
+        margin-top: 0.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .branch-cta {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--color-red);
+        transition: color 0.2s ease;
+    }
+
+    .branch-card:hover .branch-cta {
+        color: var(--color-red-light);
+        text-decoration: underline;
     }
 </style>

@@ -53,19 +53,30 @@ import { siteConfig } from "../config/site";
       </section>
 
       <section class="legal-section">
-        <h2>2. Hosting</h2>
+        <h2>2. Hosting (GitHub Pages)</h2>
         <p>
-          Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die
-          personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des
-          Hosters gespeichert. Hierbei kann es sich vor allem um IP-Adressen, Kontaktanfragen,
-          Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und
-          sonstige Daten, die über eine Website generiert werden, handeln.
+          Unsere Website wird als statische Website über den Dienst <strong>GitHub Pages</strong>
+          gehostet. Anbieter ist die GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107,
+          USA (für Nutzer im Europäischen Wirtschaftsraum: GitHub B.V., Vijzelstraat 68–72, 1017 HL
+          Amsterdam, Niederlande).
         </p>
         <p>
-          Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren
-          potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer
-          sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen
-          professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+          Beim Aufruf unserer Website erfasst GitHub Pages technisch notwendige Verbindungsdaten
+          (insbesondere die IP-Adresse des anfragenden Geräts, Datum und Uhrzeit des Abrufs, Browsertyp
+          sowie die angeforderte URL) in Server-Logfiles, um die Auslieferung der Website, die
+          Systemsicherheit und den Schutz vor Missbrauch zu gewährleisten.
+        </p>
+        <p>
+          Die Nutzung von GitHub Pages erfolgt im Interesse einer sicheren, schnellen und
+          zuverlässigen Bereitstellung unseres Online-Angebots als Sportverein auf Grundlage von
+          Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Die GitHub Inc. (bzw. das
+          Mutterunternehmen Microsoft Corporation) ist nach dem <strong>EU-US Data Privacy
+          Framework (DPF)</strong> zertifiziert, sodass für Datenübermittlungen in die USA ein
+          angemessenes Datenschutzniveau gemäß Art. 45 DSGVO besteht. Weitere Informationen finden
+          Sie in der Datenschutzerklärung von GitHub unter:{" "}
+          <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">
+            docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement
+          </a>.
         </p>
       </section>
 
@@ -79,11 +90,17 @@ import { siteConfig } from "../config/site";
         </p>
         <h3>Verantwortliche Stelle</h3>
         <p>
-          {siteConfig.impressum.responsible}<br />
           {siteConfig.impressum.clubName}<br />
+          Vertreten durch: {siteConfig.impressum.responsible}<br />
           {siteConfig.impressum.street}<br />
           {siteConfig.impressum.city}<br />
-          E-Mail: {siteConfig.impressum.email}
+          E-Mail: <a href={"mailto:" + siteConfig.impressum.email}>{siteConfig.impressum.email}</a>
+        </p>
+        <h3>SSL- bzw. TLS-Verschlüsselung</h3>
+        <p>
+          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher
+          Inhalte eine SSL- bzw. TLS-Verschlüsselung (erkennbar an „https://" in der Adresszeile
+          Ihres Browsers).
         </p>
         <h3>Speicherdauer</h3>
         <p>
@@ -94,19 +111,21 @@ import { siteConfig } from "../config/site";
           wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer
           personenbezogenen Daten haben.
         </p>
-        <h3>Ihre Rechte</h3>
+        <h3>Ihre Rechte (Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch)</h3>
         <p>
-          Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf
-          unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft
-          und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung
-          oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene
-          Daten können Sie sich jederzeit an uns wenden.
+          Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen (Art. 15 bis 21 DSGVO)
+          jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen
+          Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht
+          auf Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und
+          Widerspruch gegen die Verarbeitung. Hierzu sowie zu weiteren Fragen zum Thema
+          personenbezogene Daten können Sie sich jederzeit an uns wenden.
         </p>
         <h3>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
         <p>
-          Im Falle von Datenschutzverstößen steht dem Betroffenen ein Beschwerderecht bei der
-          zuständigen Aufsichtsbehörde zu. Zuständige Aufsichtsbehörde im Saarland ist der
-          Landesbeauftragte für Datenschutz und Informationsfreiheit des Saarlandes.<br />
+          Im Falle von Datenschutzverstößen steht den Betroffenen ein Beschwerderecht bei einer
+          Aufsichtsbehörde (Art. 77 DSGVO) zu. Zuständige Aufsichtsbehörde im Saarland ist das
+          Unabhängige Datenschutzzentrum Saarland (Landesbeauftragte für Datenschutz und
+          Informationsfreiheit):<br />
           Weitere Informationen: <a href="https://www.datenschutz.saarland.de" target="_blank" rel="noopener noreferrer">www.datenschutz.saarland.de</a>
         </p>
       </section>
@@ -115,8 +134,8 @@ import { siteConfig } from "../config/site";
         <h2>4. Datenerfassung auf dieser Website</h2>
         <h3>Server-Log-Dateien</h3>
         <p>
-          Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten
-          Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+          Der Hosting-Provider der Seiten erhebt und speichert automatisch Informationen in
+          sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:
         </p>
         <ul>
           <li>Browsertyp und Browserversion</li>
@@ -130,34 +149,86 @@ import { siteConfig } from "../config/site";
           Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die
           Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
         </p>
-        <h3>Cookies</h3>
+        <h3>Cookies und Lokaler Speicher (localStorage)</h3>
         <p>
-          Diese Website verwendet keine Cookies.
+          Diese Website verwendet <strong>keine Tracking-, Analyse- oder Marketing-Cookies</strong>.
+        </p>
+        <p>
+          Wenn Sie aktiv über den Schalter in der Kopfzeile zwischen dem dunklen und dem hellen
+          Erscheinungsbild (Dark / Light Mode) wechseln, wird Ihre Auswahl unter dem Schlüssel
+          <code>vfl-theme</code> im lokalen Speicher (<code>localStorage</code>) Ihres Browsers
+          hinterlegt, damit Ihre Darstellungswahl beim nächsten Seitenaufruf erhalten bleibt. Dabei
+          werden keinerlei personenbezogene Daten an uns oder Dritte übertragen. Die Speicherung
+          erfolgt ausschließlich auf Ihren ausdrücklichen Wunsch hin und ist gemäß § 25 Abs. 2 Nr. 2
+          TDDDG (sowie Art. 6 Abs. 1 lit. f DSGVO) technisch erforderlich und einwilligungsfrei.
+        </p>
+        <h3>Lokale Schriftarten (Webfonts) und lokale Medien</h3>
+        <p>
+          Diese Website nutzt zur einheitlichen Darstellung Schriftarten (Inter), die vollständig
+          lokal auf unserem Webserver eingebunden sind. Beim Aufruf unserer Seiten findet
+          <strong>keine Verbindung zu Servern von Google (Google Fonts)</strong> statt. Auch die auf
+          der Startseite dargestellten Vereinsbilder aus unserem Instagram-Kanal sowie Tabellendaten
+          werden vorab auf unserem Server bereitgestellt, sodass beim bloßen Besuch unserer Website
+          keine Daten an Instagram/Meta oder FuPa übertragen werden.
+        </p>
+        <h3>Kontaktaufnahme per E-Mail</h3>
+        <p>
+          Wenn Sie uns per E-Mail kontaktieren, wird Ihre Anfrage inklusive aller daraus
+          hervorgehenden personenbezogenen Daten (z. B. Name, E-Mail-Adresse, Inhalt der Anfrage) zum
+          Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Die
+          Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (sofern
+          Ihre Anfrage mit einer Mitgliedschaft oder vorvertraglichen Maßnahmen zusammenhängt) oder
+          auf Grundlage unseres berechtigten Interesses an der Beantwortung von Vereinsanfragen
+          gemäß Art. 6 Abs. 1 lit. f DSGVO.
         </p>
       </section>
 
       <section class="legal-section">
-        <h2>5. Soziale Medien und externe Links</h2>
-        <h3>Links zu sozialen Netzwerken</h3>
+        <h2>5. Soziale Medien, Vereinsprofile und externe Links</h2>
+        <h3>Externe Links zu sozialen Netzwerken, FuPa und Google Maps</h3>
         <p>
-          Diese Website enthält Links zu den sozialen Netzwerken Facebook und Instagram. Diese
-          Links führen zu externen Websites, auf die diese Datenschutzerklärung keine Anwendung
-          findet. Sobald Sie auf einen solchen Link klicken, verlassen Sie unsere Website. Es
-          gelten die Datenschutzerklärungen der jeweiligen Betreiber:
+          Unsere Website enthält reine HTML-Verlinkungen (keine eingebetteten Social-Media-Plugins
+          oder Like-Buttons) zu den sozialen Netzwerken <strong>Facebook</strong> und
+          <strong>Instagram</strong>, zum Fußballportal <strong>FuPa</strong> sowie zu
+          <strong>Google Maps</strong>. Beim bloßen Besuch unserer Website werden durch diese Links
+          keinerlei Daten an die jeweiligen Betreiber übertragen. Erst wenn Sie aktiv auf einen
+          dieser externen Links klicken, verlassen Sie unsere Website und es gelten die
+          Datenschutzbestimmungen des jeweiligen Anbieters:
         </p>
         <ul>
           <li>
-            Facebook: <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">www.facebook.com/privacy/policy</a>
+            Facebook (Meta Platforms Ireland Limited):{" "}
+            <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">www.facebook.com/privacy/policy</a>
           </li>
           <li>
-            Instagram (Meta): <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">privacycenter.instagram.com/policy</a>
+            Instagram (Meta Platforms Ireland Limited):{" "}
+            <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">privacycenter.instagram.com/policy</a>
+          </li>
+          <li>
+            FuPa (FuPa GmbH):{" "}
+            <a href="https://www.fupa.net/privacy" target="_blank" rel="noopener noreferrer">www.fupa.net/privacy</a>
+          </li>
+          <li>
+            Google Maps (Google Ireland Limited):{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>
           </li>
         </ul>
-        <h3>Externe Links (Google Maps)</h3>
+        <h3>Unsere Social-Media-Präsenzen (Facebook &amp; Instagram)</h3>
         <p>
-          Diese Website enthält einen externen Link zu Google Maps. Wenn Sie diesen Link anklicken,
-          verlassen Sie unsere Website und es gilt die Datenschutzerklärung von Google:
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>
+          Der VfL Primstal e.V. unterhält öffentlich zugängliche Vereinsprofile auf Facebook und
+          Instagram. Wenn Sie unsere Profile auf diesen Plattformen besuchen, verarbeitet der
+          jeweilige Plattformbetreiber (Meta Platforms Ireland Limited, Merrion Road, Dublin 4,
+          D04 X2K5, Irland) personenbezogene Daten (u. a. zur Bereitstellung von anonymisierten
+          Seiten-Statistiken / „Page Insights").
+        </p>
+        <p>
+          Für die Verarbeitung von Insights-Daten besteht zwischen uns und Meta eine gemeinsame
+          Verantwortlichkeit gemäß Art. 26 DSGVO (Controller Addendum):{" "}
+          <a href="https://www.facebook.com/legal/terms/page_controller_addendum" target="_blank" rel="noopener noreferrer">
+            www.facebook.com/legal/terms/page_controller_addendum
+          </a>. Unser berechtigtes Interesse an der Unterhaltung dieser Vereinsprofile liegt in einer
+          zeitgemäßen Öffentlichkeitsarbeit und Vereinskommunikation gemäß Art. 6 Abs. 1 lit. f
+          DSGVO.
         </p>
       </section>
     </div>

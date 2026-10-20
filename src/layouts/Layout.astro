@@ -1,4 +1,11 @@
 ---
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import { siteConfig } from "../config/site";
+
 interface Props {
   title?: string;
   description?: string;
@@ -14,13 +21,10 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="https://www.vfl-primstal.de/wp-content/uploads/2018/08/Logo_vfl_middle-289x300.png" />
+    <link rel="icon" type="image/png" href={siteConfig.club.logoUrl} />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script is:inline>
       (function () {
         try {
@@ -48,7 +52,9 @@ const {
     --color-red: #c8102e;
     --color-red-light: #e8193e;
     --color-red-dark: #8b0000;
-    --color-red-glow: rgba(200, 16, 46, 0.15);
+    --color-red-glow: rgba(200, 16, 46, 0.22);
+    --color-badge-text: #ff758f;
+    --color-badge-border: rgba(255, 117, 143, 0.38);
     --color-text: #f0f0f0;
     --color-text-muted: #909090;
     --color-border: #2a2a2a;
@@ -75,6 +81,8 @@ const {
     --color-red-light: #a50d26;
     --color-red-dark: #8b0000;
     --color-red-glow: rgba(200, 16, 46, 0.1);
+    --color-badge-text: #b80d29;
+    --color-badge-border: rgba(200, 16, 46, 0.35);
     --color-text: #141414;
     --color-text-muted: #52525b;
     --color-border: #e4e4e7;
@@ -185,6 +193,19 @@ const {
     background-color: var(--color-red);
     color: #fff;
     transform: translateY(-1px);
+  }
+
+  .badge,
+  .hero-badge,
+  .league-badge,
+  .position-badge,
+  .chairman-badge,
+  .season-badge:not(.season-badge--winter),
+  .age-badge,
+  .age-pill,
+  .subpage-badge {
+    color: var(--color-badge-text) !important;
+    border-color: var(--color-badge-border) !important;
   }
 
   ::-webkit-scrollbar {

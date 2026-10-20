@@ -1,0 +1,434 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+const youthTeams = [
+    {
+        id: "g-jugend",
+        name: "Unsere G-Jugend / U7",
+        ageGroup: "Mädchen & Jungen ab 4 Jahren",
+        teamsText:
+            "In der G-Jugend spielen Mädchen und Jungen ab 4 Jahren – einfach mal beim Training vorbeischauen und reinschnuppern!",
+        matchInfoTitle: "Spieltage in Turnierform",
+        matchInfo:
+            "Spiele in Turnierform an wechselnden Spielorten (Nordsaar). Gespielt wird mit 3 Feldspielern (ohne Torwart) auf einem altersgerechten Kleinspielfeld mit 4 Minitoren. In den Wintermonaten werden Hallenturniere mit demselben Spielprinzip ausgetragen.",
+        training:
+            "Mittwochs ab 16:30 Uhr und freitags ab 16:00 Uhr, jeweils für 1 Stunde im Allerswaldstadion Primstal. Wir freuen uns auf weitere Zugänge – einfach mal beim Training vorbeikommen und reinschnuppern! In den Wintermonaten wird das Training in die Halle verlegt (hier kann es bedingt durch die Hallenbelegung zu abweichenden Trainingszeiten kommen).",
+        coaches: "Thorsten Gierend, Daniel Bohnen, Arne Stratmann",
+        contact: {
+            name: "Thorsten Gierend",
+            whatsapp: "0178 / 396 82 09",
+            email: "thorsten_gierend@web.de",
+        },
+    },
+    {
+        id: "f-jugend",
+        name: "Unsere F-Jugend / U9",
+        ageGroup: "Jahrgänge 2018 / 2019 (Saison 26/27)",
+        teamsText:
+            "In der Saison 26/27 kicken die Jahrgänge 2018/2019 in der F-Jugend. Die Mannschaften bestehen aus vier Feldspielern plus Torwart. Gespielt wird auf einem altersgerechten Kleinfeld mit 3×2 m Jugendtoren.",
+        matchInfoTitle: "Spielort",
+        matchInfo:
+            "Gespielt wird in Turnierform an wechselnden Spielorten im Kreis Nordsaar.",
+        training:
+            "Mittwoch und Freitag von 16:30 bis 18:00 Uhr im Allerswaldstadion Primstal. Wir freuen uns auf weitere Zugänge – einfach mal beim Training vorbeikommen und reinschnuppern! In den Wintermonaten wird das Training in die Halle verlegt (hier kann es bedingt durch die Hallenbelegung zu abweichenden Trainingszeiten kommen).",
+        coaches: "Sven Seimetz, Mike Scharf, Tobias Wiesen",
+        contact: {
+            name: "Sven Seimetz",
+            whatsapp: "0151 / 51931139",
+            email: "sven.seimetz@gmx.de",
+        },
+    },
+    {
+        id: "e-jugend",
+        name: "Unsere E-Jugend / U10 + U11",
+        ageGroup: "9 bis 10 Jahre (U10 & U11)",
+        teamsText:
+            "Die E-Jugend ist die drittjüngste Altersklasse im Jugendfußball. Kinder in dieser Altersklasse sind in der Regel 9 bis 10 Jahre alt, wobei die U10 den jüngeren Jahrgang und die U11 den älteren Jahrgang bildet. Je nach der Anzahl der Kinder und der internen Teamstruktur kann auch in gemischten Teams gespielt werden.",
+        matchInfoTitle: "Spielort",
+        matchInfo:
+            "Primstal Allerswaldstadion – die Heimspiele der U11 finden in der Regel jeden zweiten Samstagnachmittag um 14:00 Uhr statt, im Wechsel finden die Auswärtsspiele statt. Pflichtfreundschaftsspieltage der U10 finden jeden Samstag statt und werden kurzfristig angesetzt. In den Wintermonaten werden Hallenturniere ausgetragen.",
+        training:
+            "Trainingstage sind in der Regel Dienstag und Donnerstag, jeweils von 17:00 Uhr bis 18:30 Uhr in Primstal im Allerswaldstadion. In den Wintermonaten wird das Training in die Halle verlegt (hier kann es bedingt durch die Hallenbelegung zu abweichenden Trainingszeiten kommen).",
+        coaches: "Daniel Arm, Sascha Nachtwey, Jannik Schulz",
+        contact: {
+            name: "Daniel Arm",
+            whatsapp: "0151 / 201 202 45",
+            email: "danielarm@t-online.de",
+        },
+    },
+];
+---
+
+<Layout
+    title="Jugend VfL Primstal (G- bis E-Jugend) – VfL Primstal"
+    description="Die Jugendmannschaften des VfL Primstal: G-Jugend (U7), F-Jugend (U9) und E-Jugend (U10/U11) mit Trainingszeiten, Trainern und Ansprechpartnern."
+>
+    <Header />
+
+    <main class="team-page-main">
+        <section class="page-hero">
+            <div class="container">
+                <a href="/vfl-primstal/teams/jugend" class="back-link">
+                    &larr; Zurück zur Jugend-Übersicht
+                </a>
+                <span class="hero-badge">G- bis E-Jugend (U7 – U11)</span>
+                <h1 class="hero-title">Jugend VfL Primstal</h1>
+                <p class="hero-subtitle">
+                    Von den Bambinis (G-Jugend) über die F-Jugend bis zur E-Jugend werden unsere
+                    Nachwuchskicker direkt vom VfL Primstal betreut. Neue Kinder zum Reinschnuppern
+                    sind jederzeit herzlich willkommen!
+                </p>
+
+                <nav class="quick-nav" aria-label="Schnellnavigation Altersklassen">
+                    {youthTeams.map((t) => (
+                        <a href={`#${t.id}`} class="quick-nav-pill">{t.name}</a>
+                    ))}
+                </nav>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <div class="age-sections">
+                    {youthTeams.map((t) => (
+                        <section id={t.id} class="age-section-card">
+                            <div class="age-header">
+                                <span class="age-badge">{t.ageGroup}</span>
+                                <h2 class="age-title">{t.name}</h2>
+                            </div>
+
+                            <div class="details-grid">
+                                <div class="detail-block">
+                                    <h3 class="detail-heading">Teams</h3>
+                                    <p class="detail-text">{t.teamsText}</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <h3 class="detail-heading">{t.matchInfoTitle}</h3>
+                                    <p class="detail-text">{t.matchInfo}</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <h3 class="detail-heading">Trainingsort &amp; Trainingszeiten</h3>
+                                    <p class="detail-text">{t.training}</p>
+                                </div>
+
+                                <div class="detail-block detail-block--meta">
+                                    <div class="meta-item">
+                                        <h3 class="detail-heading">Trainerteam</h3>
+                                        <p class="detail-text detail-text--strong">{t.coaches}</p>
+                                    </div>
+
+                                    <div class="meta-item">
+                                        <h3 class="detail-heading">Koordination &amp; Kontakt</h3>
+                                        <p class="detail-text detail-text--strong">{t.contact.name}</p>
+                                        <div class="contact-links">
+                                            <span class="contact-pill">
+                                                💬 WhatsApp: <strong>{t.contact.whatsapp}</strong>
+                                            </span>
+                                            <a href={`mailto:${t.contact.email}`} class="contact-pill contact-pill--link">
+                                                ✉️ {t.contact.email}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    ))}
+                </div>
+
+                <div class="switch-banner">
+                    <div>
+                        <span class="switch-label">Ältere Jahrgänge (U13 – U19)</span>
+                        <h3 class="switch-title">Ab der D-Jugend: JFG Schaumberg-Prims</h3>
+                        <p class="switch-text">
+                            Unsere D-, C-, B- und A-Jugendmannschaften spielen im Rahmen der Jugendfördergemeinschaft
+                            JFG Schaumberg-Prims.
+                        </p>
+                    </div>
+                    <a href="/vfl-primstal/teams/jugend/jfg-schaumberg-prims" class="btn-outline">
+                        Zur JFG Schaumberg-Prims &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    .team-page-main {
+        padding-top: var(--header-height);
+        min-height: 100vh;
+    }
+
+    .page-hero {
+        background: var(--color-bg);
+        padding: 4rem 0 3.5rem;
+        border-bottom: 1px solid var(--color-border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at 30% 60%,
+            rgba(200, 16, 46, 0.08) 0%,
+            transparent 65%
+        );
+        pointer-events: none;
+    }
+
+    .page-hero .container {
+        position: relative;
+    }
+
+    .back-link {
+        display: inline-block;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        margin-bottom: 1.25rem;
+        transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: var(--color-red);
+    }
+
+    .hero-badge {
+        display: block;
+        width: fit-content;
+        background: var(--color-red-glow);
+        border: 1px solid var(--color-border-accent);
+        color: var(--color-red);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: var(--color-text);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .hero-subtitle {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        max-width: 680px;
+        line-height: 1.7;
+        padding-left: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .quick-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        padding-left: 1.25rem;
+    }
+
+    .quick-nav-pill {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition:
+            border-color 0.2s ease,
+            color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .quick-nav-pill:hover {
+        border-color: var(--color-red);
+        color: var(--color-red);
+        background: var(--color-surface-hover);
+    }
+
+    .team-section {
+        background: var(--color-bg-alt);
+        padding: 4rem 0 6rem;
+    }
+
+    .age-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 2.25rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .age-section-card {
+        scroll-margin-top: calc(var(--header-height) + 1.5rem);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-red);
+        border-radius: 14px;
+        padding: 2.25rem;
+    }
+
+    .age-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .age-badge {
+        display: inline-block;
+        background: var(--color-red-glow);
+        color: var(--color-red);
+        border: 1px solid var(--color-border-accent);
+        border-radius: 20px;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.6rem;
+    }
+
+    .age-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem;
+    }
+
+    .detail-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .detail-block--meta {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    .detail-heading {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-red);
+        margin: 0;
+    }
+
+    .detail-text {
+        color: var(--color-text-muted);
+        font-size: 0.94rem;
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    .detail-text--strong {
+        color: var(--color-text);
+        font-weight: 600;
+        margin-top: 0.2rem;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.5rem;
+    }
+
+    .contact-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+    }
+
+    .contact-pill strong {
+        color: var(--color-text);
+    }
+
+    .contact-pill--link {
+        color: var(--color-red);
+        font-weight: 600;
+        text-decoration: none;
+        transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-pill--link:hover {
+        border-color: var(--color-red);
+        color: var(--color-red-light);
+    }
+
+    .switch-banner {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 2rem 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .switch-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-red);
+        margin-bottom: 0.25rem;
+    }
+
+    .switch-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0 0 0.35rem;
+    }
+
+    .switch-text {
+        color: var(--color-text-muted);
+        font-size: 0.92rem;
+        margin: 0;
+        max-width: 560px;
+    }
+
+    @media (max-width: 820px) {
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

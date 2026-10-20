@@ -1,10 +1,10 @@
 ---
-// Hero.astro
+import { siteConfig } from "../config/site";
 ---
 
 <section class="hero">
   <img
-    src="https://www.vfl-primstal.de/wp-content/uploads/2018/08/Logo_vfl_middle-289x300.png"
+    src={siteConfig.club.logoUrl}
     alt=""
     class="hero-watermark"
     aria-hidden="true"

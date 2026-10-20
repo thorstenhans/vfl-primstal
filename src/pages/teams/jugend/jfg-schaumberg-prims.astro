@@ -1,0 +1,309 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+const jfgTeams = [
+    {
+        id: "d-jugend",
+        name: "D-Jugend",
+        ageGroup: "U13 – 11 bis 12 Jahre",
+        subtitle: "Der Einstieg in die JFG Schaumberg-Prims.",
+        description:
+            "Mit der D-Jugend wechseln unsere Nachwuchskicker in die Jugendfördergemeinschaft JFG Schaumberg-Prims. Im sogenannten goldenen Lernalter werden hier Technik, Koordination und das Zusammenspiel auf dem größeren Feld gemeinsam mit den Partnervereinen intensiv gefördert.",
+    },
+    {
+        id: "c-jugend",
+        name: "C-Jugend",
+        ageGroup: "U15 – 13 bis 14 Jahre",
+        subtitle: "Übergang auf das Großfeld (11 gegen 11).",
+        description:
+            "In der C-Jugend steht die Gewöhnung an das große Spielfeld im Mittelpunkt. Taktische Abläufe, Athletik und das mannschaftliche Zusammenspiel über die Stammvereine hinweg werden gezielt weiterentwickelt.",
+    },
+    {
+        id: "b-jugend",
+        name: "B-Jugend",
+        ageGroup: "U17 – 15 bis 16 Jahre",
+        subtitle: "Dynamischer Jugendfußball und taktische Reife.",
+        description:
+            "In der B-Jugend steht die Weiterentwicklung von Spielintelligenz, Tempo und mannschaftstaktischem Verhalten im Fokus. Unsere Teams messen sich im saarländischen Spielbetrieb und fördern jedes Talent entsprechend seinen Stärken.",
+    },
+    {
+        id: "a-jugend",
+        name: "A-Jugend",
+        ageGroup: "U19 – 17 bis 18 Jahre",
+        subtitle: "Das Sprungbrett in den Aktivenbereich.",
+        description:
+            "Die A-Jugend bildet die höchste Altersklasse im Juniorenfußball. Hier bereiten wir unsere Nachwuchsspieler intensiv auf den nahtlosen Übergang in die 1. und 2. Mannschaft des VfL Primstal sowie der Partnervereine vor.",
+    },
+];
+---
+
+<Layout
+    title="JFG Schaumberg-Prims (D- bis A-Jugend) – VfL Primstal"
+    description="Die Jugendmannschaften der JFG Schaumberg-Prims von der D-Jugend (U13) bis zur A-Jugend (U19)."
+>
+    <Header />
+
+    <main class="team-page-main">
+        <section class="page-hero">
+            <div class="container">
+                <a href="/vfl-primstal/teams/jugend" class="back-link">
+                    &larr; Zurück zur Jugend-Übersicht
+                </a>
+                <span class="hero-badge">D- bis A-Jugend (U13 – U19)</span>
+                <h1 class="hero-title">JFG Schaumberg-Prims</h1>
+                <p class="hero-subtitle">
+                    Ab der D-Jugend gestalten wir unsere Nachwuchsarbeit gemeinsam in der
+                    Jugendfördergemeinschaft <strong>JFG Schaumberg-Prims</strong> – für starke
+                    Mannschaften, optimale Förderung und einen erfolgreichen Weg in den Aktivenbereich.
+                </p>
+
+                <nav class="quick-nav" aria-label="Schnellnavigation Altersklassen">
+                    {jfgTeams.map((t) => (
+                        <a href={`#${t.id}`} class="quick-nav-pill">{t.name}</a>
+                    ))}
+                </nav>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <div class="age-sections">
+                    {jfgTeams.map((t) => (
+                        <section id={t.id} class="age-section-card">
+                            <div class="age-header">
+                                <div>
+                                    <span class="age-badge">{t.ageGroup}</span>
+                                    <h2 class="age-title">{t.name}</h2>
+                                    <p class="age-subtitle">{t.subtitle}</p>
+                                </div>
+                            </div>
+                            <p class="age-description">{t.description}</p>
+                        </section>
+                    ))}
+                </div>
+
+                <div class="switch-banner">
+                    <div>
+                        <span class="switch-label">Jüngere Jahrgänge (U7 – U11)</span>
+                        <h3 class="switch-title">G- bis E-Jugend beim VfL Primstal</h3>
+                        <p class="switch-text">
+                            Die Altersklassen von den Bambinis (G-Jugend) über die F-Jugend bis zur E-Jugend
+                            werden direkt vom VfL Primstal betreut.
+                        </p>
+                    </div>
+                    <a href="/vfl-primstal/teams/jugend/vfl-primstal" class="btn-outline">
+                        Zur VfL-Jugend (G–E) &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    .team-page-main {
+        padding-top: var(--header-height);
+        min-height: 100vh;
+    }
+
+    .page-hero {
+        background: var(--color-bg);
+        padding: 4rem 0 3.5rem;
+        border-bottom: 1px solid var(--color-border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at 30% 60%,
+            rgba(200, 16, 46, 0.08) 0%,
+            transparent 65%
+        );
+        pointer-events: none;
+    }
+
+    .page-hero .container {
+        position: relative;
+    }
+
+    .back-link {
+        display: inline-block;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        margin-bottom: 1.25rem;
+        transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: var(--color-red);
+    }
+
+    .hero-badge {
+        display: block;
+        width: fit-content;
+        background: var(--color-red-glow);
+        border: 1px solid var(--color-border-accent);
+        color: var(--color-red);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: var(--color-text);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .hero-subtitle {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        max-width: 660px;
+        line-height: 1.7;
+        padding-left: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-subtitle strong {
+        color: var(--color-text);
+    }
+
+    .quick-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        padding-left: 1.25rem;
+    }
+
+    .quick-nav-pill {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition:
+            border-color 0.2s ease,
+            color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .quick-nav-pill:hover {
+        border-color: var(--color-red);
+        color: var(--color-red);
+        background: var(--color-surface-hover);
+    }
+
+    .team-section {
+        background: var(--color-bg-alt);
+        padding: 4rem 0 6rem;
+    }
+
+    .age-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .age-section-card {
+        scroll-margin-top: calc(var(--header-height) + 1.5rem);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-red);
+        border-radius: 12px;
+        padding: 2rem 2.25rem;
+    }
+
+    .age-badge {
+        display: inline-block;
+        background: var(--color-red-glow);
+        color: var(--color-red);
+        border: 1px solid var(--color-border-accent);
+        border-radius: 20px;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.6rem;
+    }
+
+    .age-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0 0 0.35rem;
+    }
+
+    .age-subtitle {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--color-text);
+        margin: 0 0 1rem;
+    }
+
+    .age-description {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 0;
+        max-width: 780px;
+    }
+
+    .switch-banner {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 2rem 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .switch-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-red);
+        margin-bottom: 0.25rem;
+    }
+
+    .switch-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0 0 0.35rem;
+    }
+
+    .switch-text {
+        color: var(--color-text-muted);
+        font-size: 0.92rem;
+        margin: 0;
+        max-width: 560px;
+    }
+</style>

@@ -4,9 +4,20 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { members, praesidium } from "../config/vorstand";
 
-const sortedMembers = [...members].sort(
-    (a, b) => Number(Boolean(b.pinned)) - Number(Boolean(a.pinned))
-);
+const compareByLastnameAsc = (
+    a: { lastname: string; firstname: string },
+    b: { lastname: string; firstname: string }
+) =>
+    a.lastname.localeCompare(b.lastname, "de") ||
+    a.firstname.localeCompare(b.firstname, "de");
+
+const sortedPraesidium = [...praesidium].sort(compareByLastnameAsc);
+
+const sortedMembers = [...members].sort((a, b) => {
+    const pinnedDiff = Number(Boolean(b.pinned)) - Number(Boolean(a.pinned));
+    if (pinnedDiff !== 0) return pinnedDiff;
+    return compareByLastnameAsc(a, b);
+});
 ---
 
 <Layout
@@ -41,19 +52,19 @@ const sortedMembers = [...members].sort(
 
                     <div class="praesidium-grid">
                         {
-                            praesidium.map((member) => (
-                                <article class="praesidium-card">
-                                    <div class="praesidium-img-wrap">
+                            sortedPraesidium.map((member) => (
+                                <article class="member-card member-card--pinned">
+                                    <div class="card-img-wrap">
                                         <img
                                             src={member.imageUrl}
                                             alt={`${member.firstname} ${member.lastname}`}
-                                            class="praesidium-img"
+                                            class="card-img"
                                             width="200"
                                             height="200"
                                             loading="lazy"
                                         />
                                     </div>
-                                    <div class="praesidium-body">
+                                    <div class="card-body">
                                         <span class="position-badge chairman-badge">
                                             {member.position}
                                         </span>
@@ -190,8 +201,8 @@ const sortedMembers = [...members].sort(
     .hero-badge {
         display: inline-block;
         background: var(--color-red-glow);
-        border: 1px solid var(--color-border-accent);
-        color: var(--color-red);
+        border: 1px solid var(--color-badge-border);
+        color: var(--color-badge-text);
         font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
@@ -282,74 +293,7 @@ const sortedMembers = [...members].sort(
     .praesidium-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
-    }
-
-    .praesidium-card {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border-accent);
-        border-radius: 16px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2.25rem 1.75rem 2rem;
-        text-align: center;
-        position: relative;
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-    }
-
-    .praesidium-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: var(--color-red);
-        border-radius: 16px 16px 0 0;
-    }
-
-    .praesidium-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(200, 16, 46, 0.12);
-    }
-
-    .praesidium-img-wrap {
-        width: 130px;
-        height: 130px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 3px solid var(--color-red);
-        box-shadow: 0 0 0 5px rgba(200, 16, 46, 0.15);
-        margin-bottom: 1.25rem;
-        flex-shrink: 0;
-    }
-
-    .praesidium-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .praesidium-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.4rem;
-        width: 100%;
-    }
-
-    .praesidium-body .member-name {
-        font-size: 1.15rem;
-    }
-
-    .praesidium-body .member-email {
-        justify-content: center;
-        padding-top: 0.6rem;
+        gap: 1.5rem;
     }
 
     /* ================================================================
@@ -440,8 +384,8 @@ const sortedMembers = [...members].sort(
     .position-badge {
         display: inline-block;
         background: var(--color-red-glow);
-        border: 1px solid rgba(200, 16, 46, 0.25);
-        color: var(--color-red);
+        border: 1px solid var(--color-badge-border);
+        color: var(--color-badge-text);
         font-size: 0.68rem;
         font-weight: 600;
         text-transform: uppercase;
@@ -452,9 +396,9 @@ const sortedMembers = [...members].sort(
     }
 
     .chairman-badge {
-        background: rgba(200, 16, 46, 0.15);
-        border-color: rgba(200, 16, 46, 0.4);
-        color: var(--color-red);
+        background: var(--color-red-glow);
+        border-color: var(--color-badge-border);
+        color: var(--color-badge-text);
     }
 
     .member-name {
@@ -491,29 +435,18 @@ const sortedMembers = [...members].sort(
         }
     }
 
-    @media (max-width: 860px) {
-        .praesidium-grid {
-            grid-template-columns: 1fr;
-            max-width: 420px;
-            margin: 0 auto;
-        }
-    }
-
     @media (max-width: 768px) {
+        .praesidium-grid,
         .board-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 480px) {
+        .praesidium-grid,
         .board-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-        }
-
-        .praesidium-img-wrap {
-            width: 100px;
-            height: 100px;
         }
 
         .card-body {

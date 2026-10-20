@@ -1,3 +1,5 @@
+import logoVfl from "../images/logo-vfl.png";
+
 export const siteConfig = {
   club: {
     name: "VfL Primstal",
@@ -17,15 +19,22 @@ export const siteConfig = {
       fullAddress: "Am Schwimmbad 10, 66620 Nonnweiler-Primstal",
       mapsUrl: "https://www.google.com/maps/search/Allerswaldstadion+Primstal",
     },
-    logoUrl:
-      "https://www.vfl-primstal.de/wp-content/uploads/2018/08/Logo_vfl_middle-289x300.png",
+    logoUrl: logoVfl.src,
   },
   social: {
     facebook: "https://www.facebook.com/vflprimstal",
     instagram: "https://www.instagram.com/vflprimstal",
   },
   nav: [
-    { label: "Über uns", href: "/vfl-primstal/#about" },
+    {
+      label: "Verein",
+      href: "/vfl-primstal/verein",
+      children: [
+        { label: "Stadion", href: "/vfl-primstal/stadion" },
+        { label: "Chronik", href: "/vfl-primstal/chronik" },
+        { label: "Vorstand", href: "/vfl-primstal/vorstand" },
+      ],
+    },
     {
       label: "Teams",
       href: "/vfl-primstal/#teams",
@@ -33,12 +42,22 @@ export const siteConfig = {
         { label: "1. Mannschaft", href: "/vfl-primstal/teams/1-mannschaft" },
         { label: "2. Mannschaft", href: "/vfl-primstal/teams/2-mannschaft" },
         { label: "Alte Herren", href: "/vfl-primstal/teams/alte-herren" },
-        { label: "Jugend", href: "/vfl-primstal/teams/jugend" },
       ],
     },
-    { label: "Chronik", href: "/vfl-primstal/chronik" },
-    { label: "Vorstand", href: "/vfl-primstal/vorstand" },
-    { label: "Stadion", href: "/vfl-primstal/#location" },
+    {
+      label: "Jugend",
+      href: "/vfl-primstal/teams/jugend",
+      children: [
+        {
+          label: "JFG Schaumberg-Prims",
+          href: "/vfl-primstal/teams/jugend/jfg-schaumberg-prims",
+        },
+        {
+          label: "VfL Primstal",
+          href: "/vfl-primstal/teams/jugend/vfl-primstal",
+        },
+      ],
+    },
     { label: "Kontakt", href: "/vfl-primstal/#contact" },
   ],
   teams: [
@@ -61,6 +80,14 @@ export const siteConfig = {
       fupaUrl: "https://www.fupa.net/team/vfl-primstal-m2-2026-27",
     },
     {
+      name: "Jugend",
+      slug: "jugend",
+      href: "/vfl-primstal/teams/jugend",
+      league: "VfL Primstal & JFG Schaumberg-Prims",
+      description:
+        "Nachwuchsförderung liegt uns am Herzen: Von der G- bis zur E-Jugend beim VfL Primstal und ab der D- bis zur A-Jugend in der JFG Schaumberg-Prims.",
+    },
+    {
       name: "Alte Herren",
       slug: "alte-herren",
       href: "/vfl-primstal/teams/alte-herren",
@@ -68,27 +95,17 @@ export const siteConfig = {
       description:
         "Fußball kennt kein Alter! Unsere Alten Herren halten die Leidenschaft für das runde Leder lebendig – mit jeder Menge Spaß und Kameradschaft.",
     },
-    {
-      name: "Jugend",
-      slug: "jugend",
-      href: "/vfl-primstal/teams/jugend",
-      league: "JFG Schaumberg-Prims",
-      description:
-        "Nachwuchsförderung liegt uns am Herzen. Im Rahmen der JFG Schaumberg-Prims betreuen wir Kinder und Jugendliche von der G-Jugend (U7) bis zur A-Jugend.",
-    },
   ],
   contact: {
-    email: "[E-MAIL EINTRAGEN]",
-    phone: "[TELEFON EINTRAGEN]",
+    email: "info@vfl-primstal.de",
   },
   impressum: {
-    clubName: "VfL Primstal e.V.",
+    clubName: "Verein für Leibesübungen 1931 Primstal e.V. (VfL Primstal e.V.)",
     street: "Am Schwimmbad 10",
     city: "66620 Nonnweiler-Primstal",
-    responsible: "[NAME DES/DER VERANTWORTLICHEN]",
-    phone: "[TELEFONNUMMER]",
-    email: "[E-MAIL-ADRESSE]",
-    registerCourt: "[ZUStäNDIGES AMTSGERICHT]",
-    registerNumber: "[VEREINSREGISTERNUMMER]",
+    responsible: "Timo Horn, Thomas Paulus, Christoph Holz (Präsidium / Vorstand gemäß § 26 BGB)",
+    email: "info@vfl-primstal.de",
+    registerCourt: "Amtsgericht St. Wendel",
+    registerNumber: "VR 527",
   },
 };

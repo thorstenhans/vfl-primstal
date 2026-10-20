@@ -4,12 +4,12 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { siteConfig } from "../../config/site";
 
-const team = siteConfig.teams[2];
+const team = siteConfig.teams.find((t) => t.slug === "alte-herren")!;
 ---
 
 <Layout
-    title={`${team.name} – VfL Primstal`}
-    description={team.description}
+    title={`${team.name} (AH) – VfL Primstal`}
+    description="Alte Herren (AH) des VfL Primstal – Training jeden Donnerstag um 20:00 Uhr. Jeder ist herzlich willkommen mitzukicken!"
 >
     <Header />
 
@@ -17,15 +17,86 @@ const team = siteConfig.teams[2];
         <section class="page-hero">
             <div class="container">
                 <span class="hero-badge">{team.league}</span>
-                <h1 class="hero-title">{team.name}</h1>
+                <h1 class="hero-title">{team.name} (AH)</h1>
                 <p class="hero-subtitle">{team.description}</p>
             </div>
         </section>
 
         <section class="team-section">
             <div class="container">
-                <div class="content-placeholder">
-                    <p>Weitere Informationen zu den Alten Herren folgen in Kürze.</p>
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="welcome-content">
+                        <span class="welcome-label">Lust auf Fußball?</span>
+                        <h2 class="welcome-title">Jeder ist herzlich willkommen!</h2>
+                        <p class="welcome-text">
+                            Egal ob ehemaliger Vereinsspieler, Wiedereinsteiger oder einfach aus Freude am Fußball –
+                            bei unserer AH steht der gemeinsame Spaß am Kicken und die Kameradschaft im Vordergrund.
+                            Komm einfach donnerstags vorbei und kick mit!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trainingszeiten & Orte -->
+                <div class="training-section">
+                    <div class="section-header">
+                        <h2 class="subsection-title">Trainingszeiten &amp; Orte</h2>
+                        <p class="subsection-subtitle">
+                            Wir trainieren ganzjährig jeden Donnerstagabend um 20:00 Uhr.
+                        </p>
+                    </div>
+
+                    <div class="training-grid">
+                        <!-- Reguläres Training -->
+                        <div class="training-card training-card--primary">
+                            <div class="card-header">
+                                <span class="season-badge">Frühjahr – Herbst</span>
+                                <span class="card-icon" aria-hidden="true">⚽</span>
+                            </div>
+                            <h3 class="card-title">Freilufttraining</h3>
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-icon" aria-hidden="true">🕗</span>
+                                    <div>
+                                        <strong class="info-highlight">Donnerstags, 20:00 Uhr</strong>
+                                        <span class="info-sub">Wöchentlicher Trainingsabend</span>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-icon" aria-hidden="true">📍</span>
+                                    <div>
+                                        <strong class="info-highlight">Allerswaldstadion Primstal</strong>
+                                        <span class="info-sub">Am Schwimmbad 10, 66620 Nonnweiler-Primstal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wintertraining -->
+                        <div class="training-card">
+                            <div class="card-header">
+                                <span class="season-badge season-badge--winter">Wintermonate</span>
+                                <span class="card-icon" aria-hidden="true">🏟️</span>
+                            </div>
+                            <h3 class="card-title">Hallentraining im Winter</h3>
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-icon" aria-hidden="true">🕗</span>
+                                    <div>
+                                        <strong class="info-highlight">Donnerstags, 20:00 Uhr</strong>
+                                        <span class="info-sub">Zur gleichen Zeit wie im Sommer</span>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-icon" aria-hidden="true">📍</span>
+                                    <div>
+                                        <strong class="info-highlight">Mehrzweckhalle Primstal</strong>
+                                        <span class="info-sub">66620 Nonnweiler-Primstal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -101,12 +172,149 @@ const team = siteConfig.teams[2];
         padding: 4rem 0 6rem;
     }
 
-    .content-placeholder {
+    /* Welcome Banner */
+    .welcome-banner {
         background: var(--color-surface);
-        border: 1px dashed var(--color-border);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-red);
         border-radius: 12px;
-        padding: 3rem 2rem;
-        text-align: center;
+        padding: 2rem 2.25rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .welcome-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-red);
+        margin-bottom: 0.35rem;
+    }
+
+    .welcome-title {
+        font-size: clamp(1.35rem, 3vw, 1.85rem);
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0 0 0.75rem;
+    }
+
+    .welcome-text {
         color: var(--color-text-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 720px;
+        margin: 0;
+    }
+
+    /* Section Header */
+    .section-header {
+        margin-bottom: 1.75rem;
+    }
+
+    .subsection-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: 1.2;
+        margin: 0 0 0.35rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .subsection-subtitle {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+
+    /* Training Cards Grid */
+    .training-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.75rem;
+    }
+
+    .training-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .training-card--primary {
+        border-top: 3px solid var(--color-red);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .season-badge {
+        display: inline-block;
+        background: var(--color-red-glow);
+        color: var(--color-red);
+        border: 1px solid var(--color-border-accent);
+        border-radius: 20px;
+        padding: 0.25rem 0.85rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .season-badge--winter {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--color-text);
+        border-color: var(--color-border);
+    }
+
+    .card-icon {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+
+    .info-icon {
+        font-size: 1.15rem;
+        line-height: 1.4;
+    }
+
+    .info-highlight {
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--color-text);
+    }
+
+    .info-sub {
+        display: block;
+        font-size: 0.88rem;
+        color: var(--color-text-muted);
+        margin-top: 0.15rem;
     }
 </style>

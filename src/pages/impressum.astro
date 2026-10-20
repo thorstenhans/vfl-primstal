@@ -13,7 +13,7 @@ const imp = siteConfig.impressum;
       <h1 class="page-title">Impressum</h1>
 
       <section class="legal-section">
-        <h2>Angaben gemäß § 5 TMG</h2>
+        <h2>Angaben gemäß § 5 DDG</h2>
         <p>
           {imp.clubName}<br />
           {imp.street}<br />
@@ -29,7 +29,6 @@ const imp = siteConfig.impressum;
       <section class="legal-section">
         <h2>Kontakt</h2>
         <p>
-          Telefon: {imp.phone}<br />
           E-Mail: <a href={"mailto:" + imp.email}>{imp.email}</a>
         </p>
       </section>
@@ -44,10 +43,27 @@ const imp = siteConfig.impressum;
       </section>
 
       <section class="legal-section">
+        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <p>
+          {imp.responsible}<br />
+          {imp.street}<br />
+          {imp.city}
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+        <p>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </section>
+
+      <section class="legal-section">
         <h2>Haftung für Inhalte</h2>
         <p>
-          Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach
-          den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter
+          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach
+          den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter
           jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen
           oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
           Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den
