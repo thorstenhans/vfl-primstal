@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { members, praesidium } from "../config/vorstand";
+
+const sortedMembers = [...members].sort(
+    (a, b) => Number(Boolean(b.pinned)) - Number(Boolean(a.pinned))
+);
 ---
 
 <Layout
@@ -92,8 +96,15 @@ import { members, praesidium } from "../config/vorstand";
 
                     <div class="board-grid">
                         {
-                            members.map((member) => (
-                                <article class="member-card">
+                            sortedMembers.map((member) => (
+                                <article
+                                    class={
+                                        "member-card" +
+                                        (member.pinned
+                                            ? " member-card--pinned"
+                                            : "")
+                                    }
+                                >
                                     <div class="card-img-wrap">
                                         <img
                                             src={member.imageUrl}
@@ -374,6 +385,20 @@ import { members, praesidium } from "../config/vorstand";
         transform: translateY(-4px);
         border-color: var(--color-border-accent);
         box-shadow: 0 8px 32px rgba(200, 16, 46, 0.08);
+    }
+
+    .member-card--pinned {
+        border-color: var(--color-border-accent);
+    }
+
+    .member-card--pinned .card-img-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--color-red);
     }
 
     .card-img-wrap {

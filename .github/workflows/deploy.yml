@@ -27,9 +27,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Instaloader
-        run: pip install --upgrade pip instaloader
-
       - name: Fetch Instagram feed
         run: ./scripts/fetch-instagram.sh
 

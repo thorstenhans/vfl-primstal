@@ -4,6 +4,7 @@ export interface VorstandMember {
   position: string;
   email: string;
   imageUrl: string;
+  pinned?: boolean;
 }
 
 export const praesidium: VorstandMember[] = [
@@ -37,6 +38,7 @@ export const members: VorstandMember[] = [
     position: "Hauptkassier",
     email: "kasse@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: true,
   },
   {
     firstname: "Dieter",
@@ -44,6 +46,7 @@ export const members: VorstandMember[] = [
     position: "Spielausschussvorsitzender",
     email: "spielausschuss@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: true,
   },
   {
     firstname: "Marco",
@@ -51,6 +54,7 @@ export const members: VorstandMember[] = [
     position: "Jugendleiter",
     email: "jugend@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: true,
   },
   {
     firstname: "Mike",
@@ -58,6 +62,7 @@ export const members: VorstandMember[] = [
     position: "Organisationsleiter",
     email: "organisation@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: true,
   },
   {
     firstname: "Birgit",
@@ -65,6 +70,7 @@ export const members: VorstandMember[] = [
     position: "Beisitzerin",
     email: "b.holz@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Tobias",
@@ -72,6 +78,7 @@ export const members: VorstandMember[] = [
     position: "Beisitzer",
     email: "t.wiesen@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Günter",
@@ -79,6 +86,7 @@ export const members: VorstandMember[] = [
     position: "Beisitzer (Kassenwesen)",
     email: "g.zarth@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Christoph",
@@ -86,6 +94,7 @@ export const members: VorstandMember[] = [
     position: "Beisitzer (Jugend)",
     email: "c.holz@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Jan",
@@ -93,6 +102,7 @@ export const members: VorstandMember[] = [
     position: "Beisitzer",
     email: "j.schuler@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Thomas",
@@ -100,6 +110,7 @@ export const members: VorstandMember[] = [
     position: "Schriftführer",
     email: "schriftfuehrer@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Sandra",
@@ -107,6 +118,7 @@ export const members: VorstandMember[] = [
     position: "Sportwart",
     email: "sportwart@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
   {
     firstname: "Andreas",
@@ -114,5 +126,6 @@ export const members: VorstandMember[] = [
     position: "Pressewart",
     email: "presse@vfl-primstal.de",
     imageUrl: "/placeholder-person.svg",
+    pinned: false,
   },
 ];

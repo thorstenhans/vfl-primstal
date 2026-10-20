@@ -8,37 +8,23 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 IMG_DIR="$ROOT_DIR/src/images/instagram"
 DATA_FILE="$ROOT_DIR/src/data/instagram.json"
 
-TMP_DIR="$(mktemp -d)"
-trap 'rm -rf "$TMP_DIR"' EXIT
+mkdir -p "$IMG_DIR" "$(dirname "$DATA_FILE")"
 
-# Ensure instaloader is available (use global binary or cached temporary venv)
-if command -v instaloader >/dev/null 2>&1; then
-  INSTALOADER_BIN="instaloader"
-  PYTHON_BIN="python3"
-else
-  VENV_DIR="${TMPDIR:-/tmp}/instaloader-venv"
-  if [[ ! -x "$VENV_DIR/bin/instaloader" ]]; then
-    echo "[fetch-instagram] Installing instaloader into $VENV_DIR..."
-    python3 -m venv "$VENV_DIR"
-    "$VENV_DIR/bin/pip" install --quiet --upgrade pip instaloader
-  fi
-  INSTALOADER_BIN="$VENV_DIR/bin/instaloader"
-  PYTHON_BIN="$VENV_DIR/bin/python3"
-fi
+echo "[fetch-instagram] Fetching latest $COUNT posts for @$PROFILE..."
 
-echo "[fetch-instagram] Discovering latest $COUNT posts for @$PROFILE..."
-
-DISCOVERED_JSON="$TMP_DIR/discovered.json"
-
-"$PYTHON_BIN" - "$PROFILE" "$COUNT" "$DISCOVERED_JSON" <<'PY'
+python3 - "$PROFILE" "$COUNT" "$IMG_DIR" "$DATA_FILE" <<'PY'
+import datetime
+import html as htmllib
 import json
+import os
 import re
 import sys
 import urllib.request
 
 profile = sys.argv[1]
 count = int(sys.argv[2])
-out_path = sys.argv[3]
+img_dir = sys.argv[3]
+data_file = sys.argv[4]
 
 ua = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -46,7 +32,8 @@ ua = (
     "Chrome/124.0.0.0 Safari/537.36"
 )
 
-def fetch_html(url: str, dest: str = "document", site: str = "none") -> str:
+
+def fetch_text(url: str, dest: str = "document", site: str = "none") -> str:
     req = urllib.request.Request(
         url,
         headers={
@@ -58,13 +45,33 @@ def fetch_html(url: str, dest: str = "document", site: str = "none") -> str:
             "Sec-Fetch-Site": site,
         },
     )
-    with urllib.request.urlopen(req, timeout=20) as resp:
+    with urllib.request.urlopen(req, timeout=25) as resp:
         return resp.read().decode("utf-8", errors="ignore")
 
-# Step 1: Fetch public profile embed page to obtain initial recent shortcodes
-embed_html = fetch_html(f"https://www.instagram.com/{profile}/embed/", dest="iframe", site="cross-site")
+
+def download_image(url: str, dest_path: str) -> None:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": ua,
+            "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+            "Referer": "https://www.instagram.com/",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp, open(dest_path, "wb") as f:
+        f.write(resp.read())
+
+
+def pk_to_unix_ts(pk: int) -> int:
+    # Instagram 64-bit Snowflake ID epoch: 1314220021721 ms
+    if pk > 10**14:
+        return int(((pk >> 23) + 1314220021721) // 1000)
+    return pk
+
+
+# Step 1: Fetch public profile embed page (contains top 6 posts in 1080p + timestamps)
+embed_html = fetch_text(f"https://www.instagram.com/{profile}/embed/", dest="iframe", site="cross-site")
 posts_by_code = {}
-captions_by_code = {}
 
 m = re.search(r'"contextJSON":"((?:\\.|[^"\\])*)"', embed_html)
 if m:
@@ -73,154 +80,102 @@ if m:
     for item in ctx.get("graphql_media", []):
         sm = item.get("shortcode_media", {})
         code = sm.get("shortcode")
-        pk = sm.get("id") or sm.get("taken_at_timestamp") or 0
-        if code:
-            posts_by_code[code] = int(pk)
-            edges = (sm.get("edge_media_to_caption") or {}).get("edges") or []
-            if edges and isinstance(edges[0].get("node"), dict):
-                captions_by_code[code] = edges[0]["node"].get("text") or ""
-
-if not posts_by_code:
-    for m_sc in re.finditer(r'"shortcode":"([A-Za-z0-9_-]+)"', embed_html):
-        code = m_sc.group(1)
-        posts_by_code.setdefault(code, 0)
+        if not code:
+            continue
+        pk = int(sm.get("id") or 0)
+        ts = int(sm.get("taken_at_timestamp") or pk_to_unix_ts(pk))
+        edges = (sm.get("edge_media_to_caption") or {}).get("edges") or []
+        caption = ""
+        if edges and isinstance(edges[0].get("node"), dict):
+            caption = edges[0]["node"].get("text") or ""
+        posts_by_code[code] = {
+            "code": code,
+            "pk": pk,
+            "timestamp_unix": ts,
+            "caption": caption,
+            "image_url": sm.get("display_url") or "",
+        }
 
 # Step 2: Fetch the newest post page to obtain the full recent timeline grid (12+ posts)
 if posts_by_code:
-    newest_code = max(posts_by_code.items(), key=lambda kv: kv[1])[0]
-    post_html = fetch_html(f"https://www.instagram.com/p/{newest_code}/", dest="document", site="none")
+    newest_code = max(posts_by_code.values(), key=lambda p: p["pk"])["code"]
+    post_html = fetch_text(f"https://www.instagram.com/p/{newest_code}/", dest="document", site="none")
     for m_item in re.finditer(
-        r'"pk":"([0-9]+)","__isXIGPolarisMedia":"[^"]+","accessibility_caption":(?:"(?:\\.|[^"\\])*"|null),"caption":(\{"text":"(?:\\.|[^"\\])*"\}|null),"code":"([A-Za-z0-9_-]+)"',
+        r'"pk":"([0-9]+)","__isXIGPolarisMedia":"[^"]+","accessibility_caption":(?:"(?:\\.|[^"\\])*"|null),"caption":(\{"text":"(?:\\.|[^"\\])*"\}|null),"code":"([A-Za-z0-9_-]+)","seo_canonical_url":[^,]+,"display_uri":"((?:\\.|[^"\\])*)"',
         post_html,
     ):
-        pk_str, cap_raw, code = m_item.group(1), m_item.group(2), m_item.group(3)
-        posts_by_code[code] = max(posts_by_code.get(code, 0), int(pk_str))
+        pk = int(m_item.group(1))
+        cap_raw = m_item.group(2)
+        code = m_item.group(3)
+        display_uri = json.loads('"' + m_item.group(4) + '"')
+
+        caption = ""
         if cap_raw != "null":
             try:
-                captions_by_code[code] = json.loads(cap_raw).get("text") or ""
+                caption = json.loads(cap_raw).get("text") or ""
             except Exception:
                 pass
 
+        existing = posts_by_code.get(code, {})
+        posts_by_code[code] = {
+            "code": code,
+            "pk": max(existing.get("pk", 0), pk),
+            "timestamp_unix": existing.get("timestamp_unix") or pk_to_unix_ts(pk),
+            "caption": existing.get("caption") or caption,
+            # Prefer 1080p display_url from embed if available, otherwise display_uri
+            "image_url": existing.get("image_url") or display_uri,
+            "needs_full_res": not bool(existing.get("image_url")),
+        }
+
+if not posts_by_code:
+    print(f"[fetch-instagram] Error: Could not discover any posts for @{profile}.", file=sys.stderr)
+    sys.exit(1)
+
 # Sort strictly descending by Instagram Snowflake PK (newest chronological post first)
-sorted_codes = [
-    code for code, _ in sorted(posts_by_code.items(), key=lambda kv: kv[1], reverse=True)
-][:count]
+sorted_posts = sorted(posts_by_code.values(), key=lambda p: p["pk"], reverse=True)[:count]
 
-with open(out_path, "w", encoding="utf-8") as f:
-    json.dump({"shortcodes": sorted_codes, "captions": captions_by_code}, f)
-PY
+# Clean old images
+for fname in os.listdir(img_dir):
+    if re.match(r"^ig_\d+\.jpg$", fname):
+        os.remove(os.path.join(img_dir, fname))
 
-SHORTCODES=()
-while IFS= read -r line; do
-  [[ -n "$line" ]] && SHORTCODES+=("$line")
-done < <("$PYTHON_BIN" -c 'import json, sys; [print(c) for c in json.load(open(sys.argv[1]))["shortcodes"]]' "$DISCOVERED_JSON")
+metadata_out = []
 
-if [[ "${#SHORTCODES[@]}" -eq 0 ]]; then
-  echo "[fetch-instagram] Error: Could not discover any shortcodes for @$PROFILE." >&2
-  exit 1
-fi
+for idx, post in enumerate(sorted_posts, start=1):
+    code = post["code"]
+    img_url = post["image_url"]
 
-echo "[fetch-instagram] Found ${#SHORTCODES[@]} shortcodes: ${SHORTCODES[*]}"
-
-INSTALOADER_ARGS=(
-  "--no-videos"
-  "--no-profile-pic"
-  "--no-captions"
-  "--no-compress-json"
-  "--dirname-pattern=$TMP_DIR"
-  "--filename-pattern={date_utc}_UTC"
-)
-
-if [[ -n "${IG_SESSIONFILE:-}" ]]; then
-  INSTALOADER_ARGS+=("--sessionfile=$IG_SESSIONFILE")
-fi
-
-TARGETS=()
-for sc in "${SHORTCODES[@]}"; do
-  TARGETS+=("-$sc")
-done
-
-echo "[fetch-instagram] Downloading posts via instaloader..."
-"$INSTALOADER_BIN" "${INSTALOADER_ARGS[@]}" -- "${TARGETS[@]}"
-
-mkdir -p "$IMG_DIR" "$(dirname "$DATA_FILE")"
-rm -f "$IMG_DIR"/ig_*.jpg
-
-echo "[fetch-instagram] Renaming images to ig_1.jpg .. ig_${COUNT}.jpg and writing metadata..."
-"$PYTHON_BIN" - "$TMP_DIR" "$IMG_DIR" "$DATA_FILE" "$COUNT" "$DISCOVERED_JSON" <<'PY'
-import datetime
-import glob
-import json
-import os
-import shutil
-import sys
-
-tmp_dir, img_dir, data_file, count, disc_file = (
-    sys.argv[1],
-    sys.argv[2],
-    sys.argv[3],
-    int(sys.argv[4]),
-    sys.argv[5],
-)
-
-with open(disc_file, "r", encoding="utf-8") as f:
-    discovered_captions = json.load(f).get("captions", {})
-
-json_files = sorted(glob.glob(os.path.join(tmp_dir, "*_UTC.json")), reverse=True)[:count]
-posts = []
-
-for idx, jf in enumerate(json_files, start=1):
-    stem = jf[:-5]  # strip .json
-    # Single image post is <stem>.jpg; carousel post has <stem>_1.jpg as first slide
-    candidates = [f"{stem}.jpg", f"{stem}_1.jpg"] + sorted(glob.glob(f"{stem}_*.jpg"))
-    img_src = next((c for c in candidates if os.path.isfile(c)), None)
-    if not img_src:
-        continue
+    # Upgrade to full 1080p image via single-post embed page if not already from profile embed
+    if post.get("needs_full_res"):
+        try:
+            p_embed = fetch_text(f"https://www.instagram.com/p/{code}/embed/", dest="iframe", site="cross-site")
+            m_img = re.search(r'<img class="EmbeddedMediaImage"[^>]+src="([^"]+)"', p_embed)
+            if m_img:
+                img_url = htmllib.unescape(m_img.group(1))
+        except Exception:
+            pass
 
     filename = f"ig_{idx}.jpg"
     dest_path = os.path.join(img_dir, filename)
-    shutil.copy2(img_src, dest_path)
+    download_image(img_url, dest_path)
 
-    with open(jf, "r", encoding="utf-8") as f:
-        meta = json.load(f).get("node", {})
+    iso_ts = datetime.datetime.fromtimestamp(
+        int(post["timestamp_unix"]), tz=datetime.timezone.utc
+    ).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    code = meta.get("shortcode") or meta.get("code") or ""
-
-    # Extract caption (from instaloader JSON or discovered post metadata)
-    caption = ""
-    if isinstance(meta.get("caption"), dict):
-        caption = meta["caption"].get("text") or ""
-    elif isinstance(meta.get("caption"), str):
-        caption = meta["caption"]
-    else:
-        edges = (meta.get("edge_media_to_caption") or {}).get("edges") or []
-        if edges and isinstance(edges[0].get("node"), dict):
-            caption = edges[0]["node"].get("text") or ""
-    if not caption and code in discovered_captions:
-        caption = discovered_captions[code]
-
-    # Extract timestamp
-    ts_unix = meta.get("taken_at_timestamp") or meta.get("taken_at") or meta.get("date")
-    if ts_unix:
-        timestamp = datetime.datetime.fromtimestamp(
-            int(ts_unix), tz=datetime.timezone.utc
-        ).strftime("%Y-%m-%dT%H:%M:%SZ")
-    else:
-        timestamp = ""
-
-    posts.append(
+    metadata_out.append(
         {
             "index": idx,
             "filename": filename,
-            "caption": caption,
-            "timestamp": timestamp,
+            "caption": post["caption"],
+            "timestamp": iso_ts,
         }
     )
-    print(f"  [{idx}/{len(json_files)}] Saved {filename} (timestamp: {timestamp})")
+    print(f"  [{idx}/{len(sorted_posts)}] Saved {filename} (code: {code}, timestamp: {iso_ts})")
 
 with open(data_file, "w", encoding="utf-8") as f:
-    json.dump(posts, f, ensure_ascii=False, indent=2)
+    json.dump(metadata_out, f, ensure_ascii=False, indent=2)
     f.write("\n")
 
-print(f"[fetch-instagram] Wrote {len(posts)} entries to {data_file}")
+print(f"[fetch-instagram] Successfully saved {len(metadata_out)} images and wrote {data_file}")
 PY
