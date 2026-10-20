@@ -1,0 +1,180 @@
+---
+export interface StandingRow {
+  rank: number;
+  team: string;
+  matches: number;
+  wins: number;
+  draws: number;
+  defeats: number;
+  sun: string;
+  goalDifference: number;
+  points: number;
+}
+
+interface Props {
+  standings: StandingRow[];
+}
+
+const { standings } = Astro.props;
+
+function isPrimstal(teamName: string): boolean {
+  return teamName.toLowerCase().includes("vfl primstal");
+}
+
+function formatGoalDiff(diff: number): string {
+  return diff > 0 ? `+${diff}` : `${diff}`;
+}
+---
+
+{standings.length > 0 ? (
+  <div class="standings-card">
+    <div class="table-responsive">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th class="col-rank" scope="col">Pl.</th>
+            <th class="col-team" scope="col">Mannschaft</th>
+            <th class="col-num" scope="col" title="Spiele">Sp.</th>
+            <th class="col-sun" scope="col" title="Siege - Unentschieden - Niederlagen">S-U-N</th>
+            <th class="col-num" scope="col" title="Tor-Differenz">TD</th>
+            <th class="col-pts" scope="col" title="Punkte">Pkt.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standings.map((row) => {
+            const highlight = isPrimstal(row.team);
+            return (
+              <tr class={highlight ? "row-primstal" : undefined}>
+                <td class="col-rank">{row.rank}.</td>
+                <td class="col-team">{row.team}</td>
+                <td class="col-num">{row.matches}</td>
+                <td class="col-sun">{row.sun ?? `${row.wins}-${row.draws}-${row.defeats}`}</td>
+                <td class="col-num">{formatGoalDiff(row.goalDifference)}</td>
+                <td class="col-pts">{row.points}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+) : (
+  <div class="standings-placeholder">
+    <p>Die aktuelle Tabelle folgt in Kürze.</p>
+  </div>
+)}
+
+<style>
+  .standings-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .standings-table thead tr {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .standings-table th {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .standings-table td {
+    padding: 0.85rem 1.1rem;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  .standings-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .standings-table tbody tr:hover {
+    background: var(--color-surface-hover);
+  }
+
+  .col-rank {
+    width: 3.5rem;
+    text-align: right;
+    color: var(--color-text-muted);
+  }
+
+  .col-team {
+    color: var(--color-text);
+    white-space: normal;
+    min-width: 180px;
+  }
+
+  .col-num,
+  .col-sun,
+  .col-pts {
+    text-align: center;
+    width: 5.5rem;
+  }
+
+  .col-pts {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* VfL Primstal row — always bold */
+  .standings-table tbody tr.row-primstal {
+    background: var(--color-red-glow);
+  }
+
+  .standings-table tbody tr.row-primstal td {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .standings-table tbody tr.row-primstal td.col-rank {
+    color: var(--color-red);
+    border-left: 3px solid var(--color-red);
+  }
+
+  .standings-table tbody tr.row-primstal td.col-pts {
+    color: var(--color-red);
+    font-weight: 800;
+  }
+
+  .standings-placeholder {
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .standings-table {
+      font-size: 0.85rem;
+    }
+
+    .standings-table th,
+    .standings-table td {
+      padding: 0.7rem 0.65rem;
+    }
+  }
+</style>

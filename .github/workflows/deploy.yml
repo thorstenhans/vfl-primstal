@@ -3,11 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 18 * * *" # Daily at 18:00 UTC
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
+# Allow this job to update data/images in the repo and create a page deployment
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -17,8 +19,41 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Instaloader
+        run: pip install --upgrade pip instaloader
+
+      - name: Fetch Instagram feed
+        run: ./scripts/fetch-instagram.sh
+
+      - name: Fetch standings (1. Mannschaft)
+        run: ./scripts/fetch-standings-m1.sh
+
+      - name: Fetch standings (2. Mannschaft)
+        run: ./scripts/fetch-standings-m2.sh
+
+      - name: Commit and push updated data & images
+        run: |
+          git add src/images/instagram/ src/data/instagram.json src/data/standings-m1.json src/data/standings-m2.json
+          if git diff --staged --quiet; then
+            echo "No changes in Instagram feed or standings."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: update Instagram feed and league standings [skip ci]"
+            git push origin HEAD:main
+          fi
+
       - name: Install, build, and upload your site
         uses: withastro/action@v6
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

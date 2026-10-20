@@ -26,7 +26,16 @@ export const siteConfig = {
   },
   nav: [
     { label: "Über uns", href: "/vfl-primstal/#about" },
-    { label: "Teams", href: "/vfl-primstal/#teams" },
+    {
+      label: "Teams",
+      href: "/vfl-primstal/#teams",
+      children: [
+        { label: "1. Mannschaft", href: "/vfl-primstal/teams/1-mannschaft" },
+        { label: "2. Mannschaft", href: "/vfl-primstal/teams/2-mannschaft" },
+        { label: "Alte Herren", href: "/vfl-primstal/teams/alte-herren" },
+        { label: "Jugend", href: "/vfl-primstal/teams/jugend" },
+      ],
+    },
     { label: "Chronik", href: "/vfl-primstal/chronik" },
     { label: "Vorstand", href: "/vfl-primstal/vorstand" },
     { label: "Stadion", href: "/vfl-primstal/#location" },
@@ -35,26 +44,34 @@ export const siteConfig = {
   teams: [
     {
       name: "1. Mannschaft",
+      slug: "1-mannschaft",
+      href: "/vfl-primstal/teams/1-mannschaft",
       league: "Verbandsliga Nord-Ost",
       description:
         "Unsere erste Mannschaft spielt in der Verbandsliga Nord-Ost – der zweithöchsten Amateurklasse des Saarlandes. Mit Leidenschaft und Teamgeist vertreten sie die Farben des VfL.",
-      fupaUrl: "https://www.fupa.net/verein/vfl-primstal",
+      fupaUrl: "https://www.fupa.net/team/vfl-primstal-m1-2026-27",
     },
     {
       name: "2. Mannschaft",
+      slug: "2-mannschaft",
+      href: "/vfl-primstal/teams/2-mannschaft",
       league: "Landesliga Nord",
       description:
         "Die zweite Mannschaft ist in der Landesliga Nord aktiv. Sie bietet talentierten Spielern eine starke Wettkampfplattform und ist ein wichtiges Bindeglied im Vereinsleben.",
-      fupaUrl: "https://www.fupa.net/verein/vfl-primstal",
+      fupaUrl: "https://www.fupa.net/team/vfl-primstal-m2-2026-27",
     },
     {
       name: "Alte Herren",
+      slug: "alte-herren",
+      href: "/vfl-primstal/teams/alte-herren",
       league: "Freizeitfußball",
       description:
         "Fußball kennt kein Alter! Unsere Alten Herren halten die Leidenschaft für das runde Leder lebendig – mit jeder Menge Spaß und Kameradschaft.",
     },
     {
       name: "Jugend",
+      slug: "jugend",
+      href: "/vfl-primstal/teams/jugend",
       league: "JFG Schaumberg-Prims",
       description:
         "Nachwuchsförderung liegt uns am Herzen. Im Rahmen der JFG Schaumberg-Prims betreuen wir Kinder und Jugendliche von der G-Jugend (U7) bis zur A-Jugend.",

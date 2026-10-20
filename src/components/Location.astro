@@ -1,5 +1,6 @@
 ---
-import MapSVG from "./MapSVG.astro";
+import { Image } from "astro:assets";
+import stadiumImage from "../images/allerswaldstadion.jpg";
 ---
 
 <section id="location" class="location">
@@ -40,30 +41,15 @@ import MapSVG from "./MapSVG.astro";
         </a>
       </div>
 
-      <!-- Right: Map placeholder -->
-      <div class="map-placeholder">
-        <!-- Vector map fills the full area -->
-        <div class="map-svg-layer" aria-hidden="true">
-          <MapSVG />
-        </div>
-        <!-- Info overlay stays on top -->
-        <div class="map-inner">
-          <span class="map-pin-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#c8102e" width="36" height="36">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-          </span>
-          <p class="map-stadium">Allerswaldstadion</p>
-          <p class="map-address">Am Schwimmbad 10<br />66620 Nonnweiler-Primstal</p>
-          <a
-            href="https://www.google.com/maps/search/Allerswaldstadion+Primstal"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="map-open-link"
-          >
-            Karte öffnen &rarr;
-          </a>
-        </div>
+      <!-- Right: Stadium photo -->
+      <div class="stadium-photo-card">
+        <Image
+          src={stadiumImage}
+          alt="Luftaufnahme des Allerswaldstadions in Nonnweiler-Primstal"
+          class="stadium-photo"
+          width={960}
+          height={540}
+        />
       </div>
     </div>
   </div>
@@ -83,7 +69,7 @@ import MapSVG from "./MapSVG.astro";
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   @media (max-width: 768px) {
@@ -101,6 +87,7 @@ import MapSVG from "./MapSVG.astro";
     border: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1.5rem;
   }
 
@@ -147,84 +134,19 @@ import MapSVG from "./MapSVG.astro";
     text-decoration: none;
   }
 
-  /* Right - map placeholder */
-  .map-placeholder {
+  /* Right - stadium photo */
+  .stadium-photo-card {
     aspect-ratio: 4 / 3;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    position: relative;
-    background-color: #131313;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--color-surface);
   }
 
-  /* SVG layer fills the whole box */
-  .map-svg-layer {
-    position: absolute;
-    inset: 0;
-    display: flex;
-  }
-
-  .map-svg-layer svg {
+  .stadium-photo {
     width: 100%;
     height: 100%;
-  }
-
-  /* Overlay sits on top, centred */
-  .map-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 0.4rem;
-    padding: 1.5rem;
-    background: rgba(15, 15, 15, 0.78);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 10px;
-    border: 1px solid rgba(200, 16, 46, 0.18);
-    margin: auto;
-    width: fit-content;
-    max-width: 80%;
-  }
-
-  .map-pin-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-
-  .map-stadium {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .map-address {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .map-open-link {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-red);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .map-open-link:hover {
-    color: var(--color-red-light);
-    text-decoration: underline;
+    object-fit: cover;
+    display: block;
   }
 </style>

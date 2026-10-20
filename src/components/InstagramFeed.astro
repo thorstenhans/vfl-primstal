@@ -1,33 +1,60 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import 'photoswipe/style.css';
 
 interface Post {
   index: number;
   filename: string;
   caption: string;
-  permalink: string;
   timestamp: string;
-  mediaType: string;
 }
 
 // Import metadata — the file always exists (starts as [] before first scraper run)
 import postsRaw from '../data/instagram.json';
 const posts = postsRaw as Post[];
 
-// Glob all downloaded images at build time
+// Glob all downloaded images (ig_1.jpg .. ig_9.jpg) at build time
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/instagram/*.jpg',
+  '/src/images/instagram/ig_*.jpg',
   { eager: true }
 );
 
-// Pair each post with its resolved ImageMetadata
-const feedItems = posts
-  .map((post) => ({
-    ...post,
-    imageData: imageModules[`/src/images/instagram/${post.filename}`]?.default ?? null,
-  }))
-  .filter((item): item is typeof item & { imageData: ImageMetadata } => item.imageData !== null);
+const metaByFilename = new Map(posts.map((p) => [p.filename, p]));
+
+// Build sorted feed items ig_1.jpg .. ig_9.jpg (newest image = ig_1 top-left)
+const sortedEntries = Object.entries(imageModules)
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop() ?? '';
+    const match = filename.match(/^ig_(\d+)\.jpg$/);
+    const index = match ? parseInt(match[1], 10) : 999;
+    const meta = metaByFilename.get(filename);
+    return {
+      index,
+      filename,
+      caption: meta?.caption ?? '',
+      timestamp: meta?.timestamp ?? '',
+      imageData: mod.default,
+    };
+  })
+  .sort((a, b) => a.index - b.index)
+  .slice(0, 9);
+
+const feedItems = await Promise.all(
+  sortedEntries.map(async (item) => {
+    const fullImage = await getImage({
+      src: item.imageData,
+      format: 'webp',
+      quality: 90,
+    });
+    return {
+      ...item,
+      fullSrc: fullImage.src,
+      fullWidth: item.imageData.width,
+      fullHeight: item.imageData.height,
+    };
+  })
+);
 
 const hasData = feedItems.length > 0;
 
@@ -53,29 +80,37 @@ function formatDate(iso: string): string {
 
     {hasData ? (
       <!-- Real Instagram feed -->
-      <div class="feed-grid">
+      <div class="feed-grid" id="ig-lightbox-gallery">
         {feedItems.map((item) => (
           <a
-            href={item.permalink}
+            href={item.fullSrc}
+            class="feed-item"
+            data-pswp-width={item.fullWidth}
+            data-pswp-height={item.fullHeight}
+            data-caption={item.caption}
+            data-date={item.timestamp ? formatDate(item.timestamp) : ''}
             target="_blank"
             rel="noopener noreferrer"
-            class="feed-item"
-            aria-label={item.caption || `Instagram-Beitrag vom ${formatDate(item.timestamp)}`}
+            aria-label={item.caption || (item.timestamp ? `Instagram-Beitrag vom ${formatDate(item.timestamp)} vergrößern` : `VfL Primstal Instagram-Beitrag ${item.index} vergrößern`)}
           >
             <div class="feed-img-wrap">
               <Image
                 src={item.imageData}
-                alt={item.caption || `VfL Primstal Instagram-Beitrag`}
+                alt={item.caption || `VfL Primstal Instagram-Beitrag ${item.index}`}
                 class="feed-img"
-                width={400}
-                height={400}
+                width={600}
+                height={600}
               />
-              <div class="feed-overlay">
-                {item.caption && (
-                  <p class="feed-caption">{item.caption}</p>
-                )}
-                <span class="feed-date">{formatDate(item.timestamp)}</span>
-              </div>
+              {(item.caption || item.timestamp) && (
+                <div class="feed-overlay">
+                  {item.caption && (
+                    <p class="feed-caption">{item.caption}</p>
+                  )}
+                  {item.timestamp && (
+                    <span class="feed-date">{formatDate(item.timestamp)}</span>
+                  )}
+                </div>
+              )}
             </div>
           </a>
         ))}
@@ -112,6 +147,47 @@ function formatDate(iso: string): string {
   </div>
 </section>
 
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#ig-lightbox-gallery',
+    children: 'a.feed-item',
+    pswpModule: () => import('photoswipe'),
+    bgOpacity: 0.92,
+  });
+
+  lightbox.on('uiRegister', () => {
+    lightbox.pswp?.ui?.registerElement({
+      name: 'custom-caption',
+      order: 9,
+      isButton: false,
+      appendTo: 'root',
+      onInit: (el) => {
+        lightbox.pswp?.on('change', () => {
+          const currSlideElement = lightbox.pswp?.currSlide?.data.element as HTMLElement | undefined;
+          const caption = currSlideElement?.dataset.caption || '';
+          const date = currSlideElement?.dataset.date || '';
+          if (caption || date) {
+            el.innerHTML = `
+              <div class="pswp-ig-caption">
+                ${caption ? `<p class="pswp-ig-caption__text">${caption}</p>` : ''}
+                ${date ? `<span class="pswp-ig-caption__date">${date}</span>` : ''}
+              </div>
+            `;
+            el.style.display = 'block';
+          } else {
+            el.innerHTML = '';
+            el.style.display = 'none';
+          }
+        });
+      },
+    });
+  });
+
+  lightbox.init();
+</script>
+
 <style>
   section {
     background: var(--color-bg-alt);
@@ -134,6 +210,7 @@ function formatDate(iso: string): string {
     border-radius: 4px;
     aspect-ratio: 1;
     background: var(--color-surface);
+    cursor: zoom-in;
   }
 
   .feed-img-wrap {
@@ -255,5 +332,37 @@ function formatDate(iso: string): string {
       grid-template-columns: repeat(3, 1fr);
       gap: 3px;
     }
+  }
+
+  :global(.pswp-ig-caption) {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 560px;
+    width: calc(100% - 2rem);
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    text-align: center;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  :global(.pswp-ig-caption__text) {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin: 0 0 0.25rem;
+    white-space: pre-line;
+  }
+
+  :global(.pswp-ig-caption__date) {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.65);
   }
 </style>

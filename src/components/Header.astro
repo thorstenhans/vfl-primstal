@@ -20,30 +20,109 @@ import { siteConfig } from "../config/site";
         </a>
 
         <nav class="desktop-nav" aria-label="Hauptnavigation">
-            <ul>
+            <ul class="nav-list">
                 {
                     siteConfig.nav.map((item) => (
-                        <li>
+                        <li class={item.children ? "nav-item has-dropdown" : "nav-item"}>
                             <a href={item.href} class="nav-link">
                                 {item.label}
+                                {item.children && (
+                                    <svg
+                                        class="dropdown-chevron"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                         width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                )}
                             </a>
+                            {item.children && (
+                                <ul class="dropdown-menu" aria-label={`${item.label} Untermenü`}>
+                                    {item.children.map((child) => (
+                                        <li>
+                                            <a href={child.href} class="dropdown-link">
+                                                {child.label}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </li>
                     ))
                 }
             </ul>
         </nav>
 
-        <button
-            class="hamburger"
-            id="hamburger-btn"
-            aria-label="Menü öffnen"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-actions">
+            <button
+                type="button"
+                class="theme-toggle"
+                id="theme-toggle"
+                aria-label="Farbschema umschalten"
+                title="Zwischen Dark und Light Mode wechseln"
+            >
+                <!-- Sun icon (visible in dark mode) -->
+                <svg
+                    class="theme-icon theme-icon--sun"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <!-- Moon icon (visible in light mode) -->
+                <svg
+                    class="theme-icon theme-icon--moon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+
+            <button
+                class="hamburger"
+                id="hamburger-btn"
+                aria-label="Menü öffnen"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
 
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
@@ -51,10 +130,51 @@ import { siteConfig } from "../config/site";
             <ul>
                 {
                     siteConfig.nav.map((item) => (
-                        <li>
-                            <a href={item.href} class="mobile-nav-link">
-                                {item.label}
-                            </a>
+                        <li class={item.children ? "mobile-nav-item has-submenu" : "mobile-nav-item"}>
+                            {item.children ? (
+                                <>
+                                    <div class="mobile-nav-row">
+                                        <a href={item.href} class="mobile-nav-link">
+                                            {item.label}
+                                        </a>
+                                        <button
+                                            type="button"
+                                            class="mobile-submenu-toggle"
+                                            aria-label={`${item.label} Untermenü umschalten`}
+                                            aria-expanded="true"
+                                        >
+                                            <svg
+                                                class="dropdown-chevron"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="18"
+                                                height="18"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                aria-hidden="true"
+                                            >
+                                                <polyline points="6 9 12 15 18 9" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <ul class="mobile-submenu open">
+                                        {item.children.map((child) => (
+                                            <li>
+                                                <a href={child.href} class="mobile-sublink">
+                                                    {child.label}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            ) : (
+                                <a href={item.href} class="mobile-nav-link">
+                                    {item.label}
+                                </a>
+                            )}
                         </li>
                     ))
                 }
@@ -66,12 +186,35 @@ import { siteConfig } from "../config/site";
 <script>
     const btn = document.getElementById("hamburger-btn");
     const menu = document.getElementById("mobile-menu");
+    const themeToggle = document.getElementById("theme-toggle");
+
+    themeToggle?.addEventListener("click", () => {
+        const currentTheme =
+            document.documentElement.getAttribute("data-theme") || "dark";
+        const nextTheme = currentTheme === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", nextTheme);
+        try {
+            localStorage.setItem("vfl-theme", nextTheme);
+        } catch {
+            // ignore storage errors
+        }
+    });
 
     btn?.addEventListener("click", () => {
         const isOpen = menu?.classList.toggle("open");
         btn.setAttribute("aria-expanded", String(isOpen));
         menu?.setAttribute("aria-hidden", String(!isOpen));
         btn.classList.toggle("active");
+    });
+
+    menu?.querySelectorAll(".mobile-submenu-toggle").forEach((toggleBtn) => {
+        toggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const parentLi = toggleBtn.closest(".has-submenu");
+            const submenu = parentLi?.querySelector(".mobile-submenu");
+            const isOpen = submenu?.classList.toggle("open");
+            toggleBtn.setAttribute("aria-expanded", String(Boolean(isOpen)));
+        });
     });
 
     menu?.querySelectorAll("a").forEach((link) => {
@@ -92,10 +235,11 @@ import { siteConfig } from "../config/site";
         right: 0;
         z-index: 100;
         height: var(--header-height);
-        background: rgba(12, 12, 12, 0.92);
+        background: var(--color-header-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--color-border);
+        transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     .header-inner {
@@ -103,6 +247,48 @@ import { siteConfig } from "../config/site";
         align-items: center;
         justify-content: space-between;
         height: 100%;
+        gap: 1.5rem;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+        color: var(--color-red);
+        border-color: var(--color-border-accent);
+        background: var(--color-surface-hover);
+    }
+
+    .theme-icon--moon {
+        display: none;
+    }
+
+    :global(:root[data-theme="light"]) .theme-icon--sun {
+        display: none;
+    }
+
+    :global(:root[data-theme="light"]) .theme-icon--moon {
+        display: block;
     }
 
     .logo-link {
@@ -126,13 +312,20 @@ import { siteConfig } from "../config/site";
         letter-spacing: -0.01em;
     }
 
-    .desktop-nav ul {
+    .desktop-nav .nav-list {
         display: flex;
         align-items: center;
         gap: 2rem;
     }
 
+    .nav-item {
+        position: relative;
+    }
+
     .nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
         color: var(--color-text-muted);
         font-size: 0.875rem;
         font-weight: 500;
@@ -141,12 +334,13 @@ import { siteConfig } from "../config/site";
         text-decoration: none;
         transition: color 0.2s ease;
         position: relative;
+        padding: 0.5rem 0;
     }
 
     .nav-link::after {
         content: "";
         position: absolute;
-        bottom: -4px;
+        bottom: 0;
         left: 0;
         right: 0;
         height: 2px;
@@ -156,12 +350,76 @@ import { siteConfig } from "../config/site";
         transform-origin: left;
     }
 
-    .nav-link:hover {
+    .nav-link:hover,
+    .has-dropdown:hover > .nav-link,
+    .has-dropdown:focus-within > .nav-link {
         color: var(--color-text);
     }
 
-    .nav-link:hover::after {
+    .nav-link:hover::after,
+    .has-dropdown:hover > .nav-link::after,
+    .has-dropdown:focus-within > .nav-link::after {
         transform: scaleX(1);
+    }
+
+    .dropdown-chevron {
+        transition: transform 0.2s ease;
+    }
+
+    .has-dropdown:hover .dropdown-chevron,
+    .has-dropdown:focus-within .dropdown-chevron {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: -0.75rem;
+        min-width: 210px;
+        background: var(--color-dropdown-bg);
+        border: 1px solid var(--color-border);
+        border-top: 2px solid var(--color-red);
+        border-radius: 0 0 10px 10px;
+        padding: 0.5rem 0;
+        box-shadow: var(--shadow-dropdown);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            visibility 0.2s ease;
+        z-index: 110;
+    }
+
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown:focus-within .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-link {
+        display: block;
+        padding: 0.65rem 1.25rem;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            padding-left 0.2s ease;
+    }
+
+    .dropdown-link:hover,
+    .dropdown-link:focus-visible {
+        color: var(--color-text);
+        background: var(--color-surface);
+        padding-left: 1.5rem;
     }
 
     .hamburger {
@@ -204,7 +462,9 @@ import { siteConfig } from "../config/site";
         top: var(--header-height);
         left: 0;
         right: 0;
-        background: rgba(12, 12, 12, 0.97);
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
+        background: var(--color-mobile-menu-bg);
         border-bottom: 1px solid var(--color-border);
         padding: 1rem 0 1.5rem;
         backdrop-filter: blur(12px);
@@ -212,6 +472,17 @@ import { siteConfig } from "../config/site";
 
     .mobile-menu.open {
         display: block;
+    }
+
+    .mobile-nav-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 1rem;
+    }
+
+    .mobile-nav-row .mobile-nav-link {
+        flex: 1;
     }
 
     .mobile-nav-link {
@@ -232,6 +503,59 @@ import { siteConfig } from "../config/site";
         color: var(--color-text);
         background: var(--color-surface);
         border-left-color: var(--color-red);
+    }
+
+    .mobile-submenu-toggle {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        color: var(--color-text-muted);
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .mobile-submenu-toggle:hover {
+        color: var(--color-text);
+        border-color: var(--color-border-accent);
+    }
+
+    .mobile-submenu-toggle[aria-expanded="true"] .dropdown-chevron {
+        transform: rotate(180deg);
+    }
+
+    .mobile-submenu {
+        display: none;
+        background: var(--color-submenu-bg);
+        border-left: 2px solid var(--color-border-accent);
+        margin-left: 1.5rem;
+        padding: 0.25rem 0;
+    }
+
+    .mobile-submenu.open {
+        display: block;
+    }
+
+    .mobile-sublink {
+        display: block;
+        padding: 0.65rem 1.25rem;
+        color: var(--color-text-muted);
+        font-size: 0.92rem;
+        font-weight: 500;
+        transition:
+            color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .mobile-sublink:hover {
+        color: var(--color-red-light);
+        background: var(--color-surface);
     }
 
     @media (max-width: 768px) {

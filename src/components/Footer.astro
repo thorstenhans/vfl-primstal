@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo-link">
+        <a href="/vfl-primstal/" class="footer-logo-link">
           <img
             src={siteConfig.club.logoUrl}
             alt="VfL Primstal Logo"
@@ -31,6 +31,17 @@ const currentYear = new Date().getFullYear();
           {siteConfig.nav.map((item) => (
             <li>
               <a href={item.href} class="footer-link">{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3 class="footer-heading">Teams</h3>
+        <ul>
+          {siteConfig.teams.map((team) => (
+            <li>
+              <a href={team.href} class="footer-link">{team.name}</a>
             </li>
           ))}
         </ul>
@@ -72,9 +83,9 @@ const currentYear = new Date().getFullYear();
         &copy; {currentYear} {siteConfig.club.fullName}. Alle Rechte vorbehalten.
       </p>
       <div class="legal-links">
-        <a href="/impressum" class="legal-link">Impressum</a>
+        <a href="/vfl-primstal/impressum" class="legal-link">Impressum</a>
         <span class="divider" aria-hidden="true">&middot;</span>
-        <a href="/datenschutz" class="legal-link">Datenschutz</a>
+        <a href="/vfl-primstal/datenschutz" class="legal-link">Datenschutz</a>
       </div>
     </div>
   </div>
@@ -90,8 +101,8 @@ const currentYear = new Date().getFullYear();
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem;
     margin-bottom: 3rem;
   }
 
@@ -158,8 +169,10 @@ const currentYear = new Date().getFullYear();
 
   .social-links {
     display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
   }
 
   .social-link {

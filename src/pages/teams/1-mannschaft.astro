@@ -1,0 +1,192 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import StandingsTable from "../../components/StandingsTable.astro";
+import { siteConfig } from "../../config/site";
+import standingsM1 from "../../data/standings-m1.json";
+
+const team = siteConfig.teams[0];
+---
+
+<Layout
+    title={`${team.name} – VfL Primstal`}
+    description={team.description}
+>
+    <Header />
+
+    <main class="team-page-main">
+        <section class="page-hero">
+            <div class="container">
+                <span class="hero-badge">Aktive</span>
+                <h1 class="hero-title">{team.name}</h1>
+                <p class="hero-subtitle">{team.description}</p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <!-- Aktuelle Liga & FuPa -->
+                <div class="league-panel">
+                    <div class="league-info">
+                        <span class="league-label">Aktuelle Liga</span>
+                        <h2 class="league-name">{team.league}</h2>
+                    </div>
+                    {team.fupaUrl && (
+                        <a
+                            href={team.fupaUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-outline fupa-btn"
+                        >
+                            Auf FuPa ansehen &nearr;
+                        </a>
+                    )}
+                </div>
+
+                <!-- Aktuelle Tabelle -->
+                <div class="standings-section">
+                    <div class="section-header">
+                        <h2 class="subsection-title">Aktuelle Tabelle</h2>
+                        <p class="subsection-subtitle">
+                            Tabellenstand in der {team.league}.
+                        </p>
+                    </div>
+                    <StandingsTable standings={standingsM1} />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    .team-page-main {
+        padding-top: var(--header-height);
+        min-height: 100vh;
+    }
+
+    .page-hero {
+        background: var(--color-bg);
+        padding: 5rem 0 4rem;
+        border-bottom: 1px solid var(--color-border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at 30% 60%,
+            rgba(200, 16, 46, 0.08) 0%,
+            transparent 65%
+        );
+        pointer-events: none;
+    }
+
+    .page-hero .container {
+        position: relative;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: var(--color-red-glow);
+        border: 1px solid var(--color-border-accent);
+        color: var(--color-red);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: var(--color-text);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .hero-subtitle {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        max-width: 600px;
+        line-height: 1.7;
+        padding-left: 1.25rem;
+    }
+
+    .team-section {
+        background: var(--color-bg-alt);
+        padding: 4rem 0 6rem;
+    }
+
+    .league-panel {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-left: 4px solid var(--color-red);
+        border-radius: 12px;
+        padding: 1.75rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .league-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-red);
+        margin-bottom: 0.25rem;
+    }
+
+    .league-name {
+        font-size: clamp(1.35rem, 3vw, 1.85rem);
+        font-weight: 800;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    .section-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .subsection-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: 1.2;
+        margin: 0 0 0.35rem;
+        padding-left: 1rem;
+        border-left: 4px solid var(--color-red);
+    }
+
+    .subsection-subtitle {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+
+    .standings-placeholder {
+        background: var(--color-surface);
+        border: 1px dashed var(--color-border);
+        border-radius: 12px;
+        padding: 3rem 2rem;
+        text-align: center;
+        color: var(--color-text-muted);
+    }
+</style>
