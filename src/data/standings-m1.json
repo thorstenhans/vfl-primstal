@@ -2,13 +2,13 @@
   {
     "rank": 1,
     "team": "SG Lebach-Landsweiler",
-    "matches": 12,
-    "wins": 9,
+    "matches": 13,
+    "wins": 10,
     "draws": 1,
     "defeats": 2,
-    "sun": "9-1-2",
-    "goalDifference": 21,
-    "points": 28
+    "sun": "10-1-2",
+    "goalDifference": 24,
+    "points": 31
   },
   {
     "rank": 2,
@@ -68,12 +68,12 @@
   {
     "rank": 7,
     "team": "SG Scheuern-Steinb./Dörs.",
-    "matches": 12,
+    "matches": 13,
     "wins": 5,
     "draws": 3,
-    "defeats": 4,
-    "sun": "5-3-4",
-    "goalDifference": 8,
+    "defeats": 5,
+    "sun": "5-3-5",
+    "goalDifference": 5,
     "points": 18
   },
   {
