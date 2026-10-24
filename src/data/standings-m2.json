@@ -45,6 +45,17 @@
   },
   {
     "rank": 5,
+    "team": "FC Blau-Weiß St. Wendel",
+    "matches": 13,
+    "wins": 6,
+    "draws": 1,
+    "defeats": 6,
+    "sun": "6-1-6",
+    "goalDifference": -8,
+    "points": 19
+  },
+  {
+    "rank": 6,
     "team": "SG Oberes Bliestal",
     "matches": 12,
     "wins": 5,
@@ -55,7 +66,7 @@
     "points": 17
   },
   {
-    "rank": 6,
+    "rank": 7,
     "team": "SV Habach",
     "matches": 12,
     "wins": 5,
@@ -64,17 +75,6 @@
     "sun": "5-2-5",
     "goalDifference": -3,
     "points": 17
-  },
-  {
-    "rank": 7,
-    "team": "FC Blau-Weiß St. Wendel",
-    "matches": 12,
-    "wins": 5,
-    "draws": 1,
-    "defeats": 6,
-    "sun": "5-1-6",
-    "goalDifference": -10,
-    "points": 16
   },
   {
     "rank": 8,
@@ -134,12 +134,12 @@
   {
     "rank": 13,
     "team": "SG Hoof-Osterbrücken",
-    "matches": 12,
+    "matches": 13,
     "wins": 4,
     "draws": 1,
-    "defeats": 7,
-    "sun": "4-1-7",
-    "goalDifference": -9,
+    "defeats": 8,
+    "sun": "4-1-8",
+    "goalDifference": -11,
     "points": 13
   },
   {

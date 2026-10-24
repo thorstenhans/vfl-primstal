@@ -7,30 +7,30 @@
     "draws": 1,
     "defeats": 2,
     "sun": "10-1-2",
-    "goalDifference": 24,
+    "goalDifference": 25,
     "points": 31
   },
   {
     "rank": 2,
     "team": "FC 08 Homburg II",
-    "matches": 12,
-    "wins": 8,
+    "matches": 13,
+    "wins": 9,
     "draws": 2,
     "defeats": 2,
-    "sun": "8-2-2",
-    "goalDifference": 14,
-    "points": 26
+    "sun": "9-2-2",
+    "goalDifference": 17,
+    "points": 29
   },
   {
     "rank": 3,
     "team": "SV Bliesmengen-Bolchen",
-    "matches": 12,
-    "wins": 8,
+    "matches": 13,
+    "wins": 9,
     "draws": 1,
     "defeats": 3,
-    "sun": "8-1-3",
-    "goalDifference": 23,
-    "points": 25
+    "sun": "9-1-3",
+    "goalDifference": 28,
+    "points": 28
   },
   {
     "rank": 4,
@@ -46,23 +46,23 @@
   {
     "rank": 5,
     "team": "TuS Steinbach",
-    "matches": 12,
+    "matches": 13,
     "wins": 7,
     "draws": 2,
-    "defeats": 3,
-    "sun": "7-2-3",
-    "goalDifference": 16,
+    "defeats": 4,
+    "sun": "7-2-4",
+    "goalDifference": 11,
     "points": 23
   },
   {
     "rank": 6,
     "team": "VfL Primstal",
-    "matches": 12,
+    "matches": 13,
     "wins": 7,
     "draws": 2,
-    "defeats": 3,
-    "sun": "7-2-3",
-    "goalDifference": 13,
+    "defeats": 4,
+    "sun": "7-2-4",
+    "goalDifference": 10,
     "points": 23
   },
   {
@@ -73,7 +73,7 @@
     "draws": 3,
     "defeats": 5,
     "sun": "5-3-5",
-    "goalDifference": 5,
+    "goalDifference": 4,
     "points": 18
   },
   {
