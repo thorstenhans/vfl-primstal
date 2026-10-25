@@ -35,13 +35,13 @@
   {
     "rank": 4,
     "team": "FSG Schiffweiler-Landsweiler",
-    "matches": 12,
-    "wins": 8,
+    "matches": 13,
+    "wins": 9,
     "draws": 1,
     "defeats": 3,
-    "sun": "8-1-3",
-    "goalDifference": 10,
-    "points": 25
+    "sun": "9-1-3",
+    "goalDifference": 11,
+    "points": 28
   },
   {
     "rank": 5,
@@ -79,100 +79,100 @@
   {
     "rank": 8,
     "team": "SV Schwarzenbach",
-    "matches": 12,
+    "matches": 13,
     "wins": 5,
     "draws": 3,
-    "defeats": 4,
-    "sun": "5-3-4",
-    "goalDifference": 3,
+    "defeats": 5,
+    "sun": "5-3-5",
+    "goalDifference": 2,
     "points": 18
   },
   {
     "rank": 9,
     "team": "SV Furpach",
-    "matches": 12,
+    "matches": 13,
     "wins": 5,
-    "draws": 2,
+    "draws": 3,
     "defeats": 5,
-    "sun": "5-2-5",
+    "sun": "5-3-5",
     "goalDifference": -2,
-    "points": 17
+    "points": 18
   },
   {
     "rank": 10,
     "team": "SV Hellas Bildstock",
-    "matches": 12,
+    "matches": 13,
+    "wins": 4,
+    "draws": 3,
+    "defeats": 6,
+    "sun": "4-3-6",
+    "goalDifference": -3,
+    "points": 15
+  },
+  {
+    "rank": 11,
+    "team": "FC Palatia Limbach II",
+    "matches": 13,
     "wins": 4,
     "draws": 2,
-    "defeats": 6,
-    "sun": "4-2-6",
+    "defeats": 7,
+    "sun": "4-2-7",
     "goalDifference": -3,
     "points": 14
   },
   {
-    "rank": 11,
-    "team": "SV Kirrberg",
-    "matches": 12,
-    "wins": 4,
-    "draws": 1,
-    "defeats": 7,
-    "sun": "4-1-7",
-    "goalDifference": -15,
-    "points": 13
-  },
-  {
     "rank": 12,
-    "team": "FC Kutzhof",
-    "matches": 12,
+    "team": "SV Kirrberg",
+    "matches": 13,
     "wins": 4,
-    "draws": 0,
-    "defeats": 8,
-    "sun": "4-0-8",
-    "goalDifference": -12,
-    "points": 12
+    "draws": 2,
+    "defeats": 7,
+    "sun": "4-2-7",
+    "goalDifference": -15,
+    "points": 14
   },
   {
     "rank": 13,
-    "team": "FC Palatia Limbach II",
-    "matches": 12,
-    "wins": 3,
-    "draws": 2,
-    "defeats": 7,
-    "sun": "3-2-7",
-    "goalDifference": -5,
-    "points": 11
+    "team": "FC Kutzhof",
+    "matches": 13,
+    "wins": 4,
+    "draws": 0,
+    "defeats": 9,
+    "sun": "4-0-9",
+    "goalDifference": -14,
+    "points": 12
   },
   {
     "rank": 14,
     "team": "SV Reiskirchen",
-    "matches": 12,
+    "matches": 13,
     "wins": 3,
-    "draws": 1,
+    "draws": 2,
     "defeats": 8,
-    "sun": "3-1-8",
+    "sun": "3-2-8",
     "goalDifference": -17,
-    "points": 10
+    "points": 11
   },
   {
     "rank": 15,
     "team": "VfB Theley",
-    "matches": 12,
+    "matches": 13,
     "wins": 2,
-    "draws": 3,
+    "draws": 4,
     "defeats": 7,
-    "sun": "2-3-7",
+    "sun": "2-4-7",
     "goalDifference": -11,
-    "points": 9
+    "points": 10
   },
   {
     "rank": 16,
     "team": "Borussia Neunkirchen",
-    "matches": 12,
+    "matches": 13,
     "wins": 0,
-    "draws": 2,
+    "draws": 3,
     "defeats": 10,
-    "sun": "0-2-10",
+    "sun": "0-3-10",
     "goalDifference": -43,
-    "points": 2
+    "points": 3
   }
 ]
