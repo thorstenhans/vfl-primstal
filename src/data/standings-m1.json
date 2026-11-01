@@ -69,12 +69,12 @@
     "rank": 7,
     "team": "SV Furpach",
     "matches": 14,
-    "wins": 6,
-    "draws": 3,
+    "wins": 5,
+    "draws": 4,
     "defeats": 5,
-    "sun": "6-3-5",
-    "goalDifference": -1,
-    "points": 21
+    "sun": "5-4-5",
+    "goalDifference": -2,
+    "points": 19
   },
   {
     "rank": 8,
@@ -111,6 +111,17 @@
   },
   {
     "rank": 11,
+    "team": "SV Kirrberg",
+    "matches": 14,
+    "wins": 4,
+    "draws": 3,
+    "defeats": 7,
+    "sun": "4-3-7",
+    "goalDifference": -15,
+    "points": 15
+  },
+  {
+    "rank": 12,
     "team": "FC Palatia Limbach II",
     "matches": 14,
     "wins": 4,
@@ -118,17 +129,6 @@
     "defeats": 8,
     "sun": "4-2-8",
     "goalDifference": -6,
-    "points": 14
-  },
-  {
-    "rank": 12,
-    "team": "SV Kirrberg",
-    "matches": 14,
-    "wins": 4,
-    "draws": 2,
-    "defeats": 8,
-    "sun": "4-2-8",
-    "goalDifference": -16,
     "points": 14
   },
   {
