@@ -12,6 +12,17 @@
   },
   {
     "rank": 2,
+    "team": "FC 08 Homburg II",
+    "matches": 15,
+    "wins": 11,
+    "draws": 2,
+    "defeats": 2,
+    "sun": "11-2-2",
+    "goalDifference": 20,
+    "points": 35
+  },
+  {
+    "rank": 3,
     "team": "SV Bliesmengen-Bolchen",
     "matches": 15,
     "wins": 11,
@@ -20,17 +31,6 @@
     "sun": "11-1-3",
     "goalDifference": 42,
     "points": 34
-  },
-  {
-    "rank": 3,
-    "team": "FC 08 Homburg II",
-    "matches": 14,
-    "wins": 10,
-    "draws": 2,
-    "defeats": 2,
-    "sun": "10-2-2",
-    "goalDifference": 19,
-    "points": 32
   },
   {
     "rank": 4,
@@ -57,16 +57,38 @@
   {
     "rank": 6,
     "team": "TuS Steinbach",
-    "matches": 14,
+    "matches": 15,
     "wins": 7,
     "draws": 2,
-    "defeats": 5,
-    "sun": "7-2-5",
-    "goalDifference": 9,
+    "defeats": 6,
+    "sun": "7-2-6",
+    "goalDifference": 7,
     "points": 23
   },
   {
     "rank": 7,
+    "team": "SG Scheuern-Steinb./Dörs.",
+    "matches": 15,
+    "wins": 6,
+    "draws": 3,
+    "defeats": 6,
+    "sun": "6-3-6",
+    "goalDifference": 5,
+    "points": 21
+  },
+  {
+    "rank": 8,
+    "team": "SV Furpach",
+    "matches": 15,
+    "wins": 5,
+    "draws": 5,
+    "defeats": 5,
+    "sun": "5-5-5",
+    "goalDifference": -2,
+    "points": 20
+  },
+  {
+    "rank": 9,
     "team": "SV Schwarzenbach",
     "matches": 15,
     "wins": 5,
@@ -75,28 +97,6 @@
     "sun": "5-4-6",
     "goalDifference": -1,
     "points": 19
-  },
-  {
-    "rank": 8,
-    "team": "SV Furpach",
-    "matches": 14,
-    "wins": 5,
-    "draws": 4,
-    "defeats": 5,
-    "sun": "5-4-5",
-    "goalDifference": -2,
-    "points": 19
-  },
-  {
-    "rank": 9,
-    "team": "SG Scheuern-Steinb./Dörs.",
-    "matches": 14,
-    "wins": 5,
-    "draws": 3,
-    "defeats": 6,
-    "sun": "5-3-6",
-    "goalDifference": 3,
-    "points": 18
   },
   {
     "rank": 10,
@@ -112,67 +112,67 @@
   {
     "rank": 11,
     "team": "SV Kirrberg",
-    "matches": 14,
-    "wins": 4,
+    "matches": 15,
+    "wins": 5,
     "draws": 3,
     "defeats": 7,
-    "sun": "4-3-7",
-    "goalDifference": -15,
-    "points": 15
+    "sun": "5-3-7",
+    "goalDifference": -14,
+    "points": 18
   },
   {
     "rank": 12,
-    "team": "FC Palatia Limbach II",
-    "matches": 14,
+    "team": "VfB Theley",
+    "matches": 15,
     "wins": 4,
-    "draws": 2,
-    "defeats": 8,
-    "sun": "4-2-8",
-    "goalDifference": -6,
-    "points": 14
+    "draws": 4,
+    "defeats": 7,
+    "sun": "4-4-7",
+    "goalDifference": -4,
+    "points": 16
   },
   {
     "rank": 13,
-    "team": "VfB Theley",
-    "matches": 14,
-    "wins": 3,
-    "draws": 4,
-    "defeats": 7,
-    "sun": "3-4-7",
-    "goalDifference": -6,
-    "points": 13
+    "team": "FC Palatia Limbach II",
+    "matches": 15,
+    "wins": 4,
+    "draws": 2,
+    "defeats": 9,
+    "sun": "4-2-9",
+    "goalDifference": -7,
+    "points": 14
   },
   {
     "rank": 14,
     "team": "FC Kutzhof",
-    "matches": 14,
+    "matches": 15,
     "wins": 4,
     "draws": 0,
-    "defeats": 10,
-    "sun": "4-0-10",
-    "goalDifference": -17,
+    "defeats": 11,
+    "sun": "4-0-11",
+    "goalDifference": -19,
     "points": 12
   },
   {
     "rank": 15,
     "team": "SV Reiskirchen",
-    "matches": 14,
+    "matches": 15,
     "wins": 3,
     "draws": 2,
-    "defeats": 9,
-    "sun": "3-2-9",
-    "goalDifference": -22,
+    "defeats": 10,
+    "sun": "3-2-10",
+    "goalDifference": -23,
     "points": 11
   },
   {
     "rank": 16,
     "team": "Borussia Neunkirchen",
-    "matches": 14,
+    "matches": 15,
     "wins": 0,
-    "draws": 3,
+    "draws": 4,
     "defeats": 11,
-    "sun": "0-3-11",
+    "sun": "0-4-11",
     "goalDifference": -46,
-    "points": 3
+    "points": 4
   }
 ]
