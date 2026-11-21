@@ -2,35 +2,35 @@
   {
     "rank": 1,
     "team": "SG Lebach-Landsweiler",
-    "matches": 16,
+    "matches": 17,
     "wins": 12,
-    "draws": 2,
+    "draws": 3,
     "defeats": 2,
-    "sun": "12-2-2",
+    "sun": "12-3-2",
     "goalDifference": 30,
-    "points": 38
+    "points": 39
   },
   {
     "rank": 2,
-    "team": "FC 08 Homburg II",
-    "matches": 16,
+    "team": "SV Bliesmengen-Bolchen",
+    "matches": 17,
     "wins": 12,
     "draws": 2,
-    "defeats": 2,
-    "sun": "12-2-2",
-    "goalDifference": 22,
+    "defeats": 3,
+    "sun": "12-2-3",
+    "goalDifference": 43,
     "points": 38
   },
   {
     "rank": 3,
-    "team": "SV Bliesmengen-Bolchen",
-    "matches": 16,
-    "wins": 11,
+    "team": "FC 08 Homburg II",
+    "matches": 17,
+    "wins": 12,
     "draws": 2,
     "defeats": 3,
-    "sun": "11-2-3",
-    "goalDifference": 42,
-    "points": 35
+    "sun": "12-2-3",
+    "goalDifference": 21,
+    "points": 38
   },
   {
     "rank": 4,
@@ -46,13 +46,13 @@
   {
     "rank": 5,
     "team": "VfL Primstal",
-    "matches": 16,
+    "matches": 17,
     "wins": 8,
-    "draws": 3,
+    "draws": 4,
     "defeats": 5,
-    "sun": "8-3-5",
+    "sun": "8-4-5",
     "goalDifference": 9,
-    "points": 27
+    "points": 28
   },
   {
     "rank": 6,
@@ -68,12 +68,12 @@
   {
     "rank": 7,
     "team": "SV Furpach",
-    "matches": 16,
+    "matches": 17,
     "wins": 6,
     "draws": 5,
-    "defeats": 5,
-    "sun": "6-5-5",
-    "goalDifference": 3,
+    "defeats": 6,
+    "sun": "6-5-6",
+    "goalDifference": 2,
     "points": 23
   },
   {
@@ -89,47 +89,47 @@
   },
   {
     "rank": 9,
-    "team": "SV Kirrberg",
-    "matches": 16,
+    "team": "SV Hellas Bildstock",
+    "matches": 17,
     "wins": 6,
     "draws": 3,
-    "defeats": 7,
-    "sun": "6-3-7",
-    "goalDifference": -10,
+    "defeats": 8,
+    "sun": "6-3-8",
+    "goalDifference": -9,
     "points": 21
   },
   {
     "rank": 10,
-    "team": "SV Schwarzenbach",
-    "matches": 16,
-    "wins": 5,
-    "draws": 4,
-    "defeats": 7,
-    "sun": "5-4-7",
-    "goalDifference": -3,
-    "points": 19
+    "team": "SV Kirrberg",
+    "matches": 17,
+    "wins": 6,
+    "draws": 3,
+    "defeats": 8,
+    "sun": "6-3-8",
+    "goalDifference": -11,
+    "points": 21
   },
   {
     "rank": 11,
-    "team": "SV Hellas Bildstock",
-    "matches": 16,
+    "team": "VfB Theley",
+    "matches": 17,
     "wins": 5,
-    "draws": 3,
-    "defeats": 8,
-    "sun": "5-3-8",
-    "goalDifference": -13,
-    "points": 18
+    "draws": 5,
+    "defeats": 7,
+    "sun": "5-5-7",
+    "goalDifference": -3,
+    "points": 20
   },
   {
     "rank": 12,
-    "team": "VfB Theley",
-    "matches": 16,
-    "wins": 4,
-    "draws": 5,
-    "defeats": 7,
-    "sun": "4-5-7",
-    "goalDifference": -4,
-    "points": 17
+    "team": "SV Schwarzenbach",
+    "matches": 17,
+    "wins": 5,
+    "draws": 4,
+    "defeats": 8,
+    "sun": "5-4-8",
+    "goalDifference": -7,
+    "points": 19
   },
   {
     "rank": 13,
@@ -145,13 +145,13 @@
   {
     "rank": 14,
     "team": "FC Kutzhof",
-    "matches": 16,
-    "wins": 4,
+    "matches": 17,
+    "wins": 5,
     "draws": 0,
     "defeats": 12,
-    "sun": "4-0-12",
-    "goalDifference": -23,
-    "points": 12
+    "sun": "5-0-12",
+    "goalDifference": -22,
+    "points": 15
   },
   {
     "rank": 15,
