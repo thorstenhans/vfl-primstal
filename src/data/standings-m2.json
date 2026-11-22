@@ -79,16 +79,27 @@
   {
     "rank": 8,
     "team": "SV Habach",
-    "matches": 16,
+    "matches": 17,
     "wins": 7,
     "draws": 2,
-    "defeats": 7,
-    "sun": "7-2-7",
-    "goalDifference": -3,
+    "defeats": 8,
+    "sun": "7-2-8",
+    "goalDifference": -5,
     "points": 23
   },
   {
     "rank": 9,
+    "team": "SV Holz-Wahlschied",
+    "matches": 17,
+    "wins": 7,
+    "draws": 1,
+    "defeats": 9,
+    "sun": "7-1-9",
+    "goalDifference": -1,
+    "points": 22
+  },
+  {
+    "rank": 10,
     "team": "VfL Primstal II",
     "matches": 17,
     "wins": 6,
@@ -99,7 +110,7 @@
     "points": 20
   },
   {
-    "rank": 10,
+    "rank": 11,
     "team": "FC Blau-Weiß St. Wendel",
     "matches": 16,
     "wins": 6,
@@ -108,17 +119,6 @@
     "sun": "6-2-8",
     "goalDifference": -12,
     "points": 20
-  },
-  {
-    "rank": 11,
-    "team": "SV Holz-Wahlschied",
-    "matches": 16,
-    "wins": 6,
-    "draws": 1,
-    "defeats": 9,
-    "sun": "6-1-9",
-    "goalDifference": -3,
-    "points": 19
   },
   {
     "rank": 12,
